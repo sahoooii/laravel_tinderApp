@@ -9,7 +9,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::find(1);
+        // $user = User::find(1);
+        //auth userではないuserを取得
+        $user = User::where('id', '<>', \Auth::user()->id)->first();
 
         return view('pages.user.index', [
             'user' => $user
