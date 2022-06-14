@@ -23,7 +23,12 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/swipes', [SwipeController::class, 'store'])->name('swipes.store');
 });
+
+//  // ログアウト
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->middleware('auth:admin')
+                ->name('logout');
