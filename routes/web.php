@@ -29,6 +29,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 //  // ログアウト
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->middleware('auth:admin')
-                ->name('logout');
+// Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+//                 ->middleware('auth:admin')
+//                 ->name('logout');
