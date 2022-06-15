@@ -18,9 +18,7 @@ class UserController extends Controller
         $user = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
 
         // dd($user->name);
-        return view('pages.user.index', [
-            'user' => $user
-        ]);
+        return view('pages.user.index', compact('user'));
     }
 
 }
