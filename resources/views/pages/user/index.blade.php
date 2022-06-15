@@ -2,8 +2,14 @@
 
 @section('content')
 <div class="p-user-index">
+
+  @if (is_null( $user))
+  <p class="text-center">There's no user around you...</p>
+  @endif
+
+  @if (!is_null( $user))
   <div class="tphoto">
-    <img src="{{ $user->img_url }}" title="tphoto" alt="Tinder Photo" />
+      <img src="{{ $user->img_url }}" title="tphoto" alt="Tinder Photo" />
     <div class="tname">{{ $user->name }}</div>
   </div>
 
@@ -33,9 +39,9 @@
             </button>
           </form>
         </div>
-
       </div>
     </div>
   </div>
+  @endif
 </div>
 @endsection
