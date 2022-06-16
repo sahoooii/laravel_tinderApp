@@ -42,5 +42,9 @@ class UsersTableSeeder extends Seeder
                 'img_url' => 'https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=350&q=80'
             ],
         ]);
+
+        // factory(User::class, 10)->create();
+        \App\Models\User::factory()->count(30)->create();
+
     }
 }
