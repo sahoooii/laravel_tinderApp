@@ -26,6 +26,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::post('/swipes', [SwipeController::class, 'store'])->name('swipes.store');
     Route::get('/matches', [MatchController::class, 'index'])->name('matches.index');
 });
