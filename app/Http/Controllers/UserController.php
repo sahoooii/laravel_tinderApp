@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Swipe;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -19,6 +20,15 @@ class UserController extends Controller
 
         // dd($user->name);
         return view('pages.user.index', compact('user'));
+    }
+
+    public function show($id)
+    {
+        $user = User::find(\Auth::user()->id);
+
+        // dd($user->name);
+
+        return view('pages.user.show', compact('user'));
     }
 
 }
