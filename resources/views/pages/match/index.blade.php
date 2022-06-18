@@ -3,6 +3,9 @@
 @section('content')
 <div class="p-match-index">
 	<div class="container">
+		<div class="col-md-12 mb-3 mt-2">
+			<p class="fs-5">Your Match</p>
+		</div>
 		<div class="row">
 			@foreach ($matchedUsers as $matchedUser)
 			{{-- @php

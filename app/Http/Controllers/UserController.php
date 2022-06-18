@@ -25,8 +25,11 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find(\Auth::user()->id);
+        // $swipe = User::find(1)->swipe;
 
-        // dd($user->name);
+        // dd($swipe);
+
+        // dd($user->id);
 
         return view('pages.user.show', compact('user'));
     }
