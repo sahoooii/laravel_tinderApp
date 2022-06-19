@@ -11,11 +11,7 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="row mb-3">
-                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" required class="col-md-8 col-form-label text-md-end mx-auto" style="font-size: 8px;">
-                        </div>
-
-                        <div class="text-center mb-4">
+                        <div class="text-center mt-2 mb-4">
                             <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
                         </div>
 
@@ -37,7 +33,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" readonly>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -51,7 +47,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" value="{{ $user->password }}">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" value="{{ $user->password }}" readonly>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -65,15 +61,17 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control mt-2" name="password_confirmation" required autocomplete="new-password" value="{{ $user->password }}">
+                                <input id="password-confirm" type="password" class="form-control mt-2" name="password_confirmation" required autocomplete="new-password" value="{{ $user->password }}" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary btn-lg">
-                                    Edit
-                                </button>
+                                <a href="{{ url('/users/edit') }}" class="btn btn-primary btn-lg">
+                                    {{-- <button type="submit" class="btn btn-primary btn-lg"> --}}
+                                        Edit
+                                    {{-- </button> --}}
+                                </a>
                             </div>
                         </div>
                     </form>
