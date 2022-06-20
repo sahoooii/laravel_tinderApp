@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Swipe;
+use App\Models\User;
 
 class SwipeController extends Controller
 {
@@ -23,6 +24,8 @@ class SwipeController extends Controller
                     ->where('to_user_id', \Auth::user()->id)
                     ->where('is_like', true)
                     ->exists();
+
+        // $user = User::find(\Auth::user()->id);
 
         if ($isMatch) {
             return redirect(route('users.index'))->with('flash_message', "You're matched!!" );

@@ -10,18 +10,21 @@ class MatchController extends Controller
 {
     public function index()
     {
+        //loginしているuser情報
+        $user = User::find(\Auth::user()->id);
+
         //自分にlikeしてくれたuser ids
         $likedUserIds = Swipe::where('to_user_id', \Auth::user()->id)
                         ->where('is_like', true)
                         ->pluck('from_user_id');
 
-        $matchedUsers = Swipe::where('from_user_id',  \Auth::user()->id)
+        $matchedUsers = Swipe::where('from_user_id', \Auth::user()->id)
                         ->whereIn('to_user_id', $likedUserIds)
                         ->where('is_like', true)
                         ->with('toUser')
                         ->get();
         // dd( $matchedUsers);
 
-        return view('pages.match.index', compact('matchedUsers'));
+        return view('pages.match.index', compact('matchedUsers', 'user'));
     }
 }
