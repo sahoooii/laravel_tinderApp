@@ -11,15 +11,16 @@ class UserController extends Controller
 {
     public function index()
     {
-        // $user = User::find(1);
+        //loginしているuser情報
+        $user = User::find(\Auth::user()->id);
 
         //すでにswipeしたuserを省いて、idsを取得
-        $swipedUserIds = Swipe::where('from_user_id', \Auth::user()->id )->get()->pluck('to_user_id');
+        $swipedUserIds = Swipe::where('from_user_id', \Auth::user()->id)->get()->pluck('to_user_id');
         //swipeしていないuserを1つ取得
-        $user = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
+        $notSwipeUser = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
 
         // dd($user->name);
-        return view('pages.user.index', compact('user'));
+        return view('pages.user.index', compact('notSwipeUser', 'user'));
     }
 
     public function show($id)
@@ -34,4 +35,12 @@ class UserController extends Controller
         return view('pages.user.show', compact('user'));
     }
 
+    public function edit($id)
+    {
+        $user = User::find(\Auth::user()->id);
+
+        // dd($user->id);
+
+        return view('pages.user.edit', compact('user'));
+    }
 }
