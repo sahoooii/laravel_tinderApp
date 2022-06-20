@@ -26,11 +26,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find(\Auth::user()->id);
-        // $swipe = User::find(1)->swipe;
-
-        // dd($swipe);
-
-        // dd($user->id);
+        // dd($user);
 
         return view('pages.user.show', compact('user'));
     }
@@ -39,8 +35,23 @@ class UserController extends Controller
     {
         $user = User::find(\Auth::user()->id);
 
-        // dd($user->id);
+        // dd($user);
 
         return view('pages.user.edit', compact('user'));
     }
+
+    // public function update(Request $request, $id)
+    // {
+    //     $user = User::find(\Auth::user()->id);
+
+    //     // $user->img_url = $request->input('img_url');
+    //     $user->name = $request->input('name');
+    //     $user->email = $request->input('email');
+    //     $user->password = $request->input('password');
+    //     $user->password_confirmation = $request->input('password_confirmation');
+
+    //     $user->save();
+    //     // dd($user);
+    //     return redirect('pages.user.index', compact('user'));
+    // }
 }
