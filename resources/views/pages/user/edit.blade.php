@@ -8,8 +8,9 @@
                 <div class="card-header">Profile Edit</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('users.update', ['id' => $user->id]) }}" enctype="multipart/form-data">
                         @csrf
+
 
 												<div class="row mb-3">
                             <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" required class="col-md-8 col-form-label text-md-end mx-auto" style="font-size: 8px;">
@@ -71,11 +72,8 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-primary btn-lg">
-                                    {{-- <button type="submit" class="btn btn-primary btn-lg">
-                                        Edit
-                                    </button> --}}
-                                    edit
+                                <a href="{{ route('users.update', ['id' => $user->id]) }}" class="btn btn-primary btn-lg">
+                                  Update
                                 </a>
                             </div>
                         </div>
