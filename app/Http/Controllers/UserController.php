@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Swipe;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Auth\RegisterController;
 
 class UserController extends Controller
 {
@@ -35,23 +38,38 @@ class UserController extends Controller
     {
         $user = User::find(\Auth::user()->id);
 
-        // dd($user);
+        // dd($user->password);
 
         return view('pages.user.edit', compact('user'));
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $user = User::find(\Auth::user()->id);
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
-    //     // $user->img_url = $request->input('img_url');
-    //     $user->name = $request->input('name');
-    //     $user->email = $request->input('email');
-    //     $user->password = $request->input('password');
-    //     $user->password_confirmation = $request->input('password_confirmation');
+        $img_url = $request->img_url;
+        // dd($img_url);
+        if (!is_null($img_url) && $img_url->isValid()) {
+            $fileNameToStore =RegisterController::create($img_url);
+        }
 
-    //     $user->save();
-    //     // dd($user);
-    //     return redirect('pages.user.index', compact('user'));
-    // }
+        $user = User::find(\Auth::user()->id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->password);
+
+        // if (!is_null($img_url) && $img_url->isValid()) {
+        //     $user->image = $fileNameToStore;
+        // }
+
+        $user->save();
+
+        return redirect()
+        ->route('users.index')
+        ->with('flash_message', 'Updated your profile!');
+    }
 }
