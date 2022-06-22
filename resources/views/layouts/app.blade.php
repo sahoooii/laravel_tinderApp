@@ -42,7 +42,7 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{route('users.show', ['id' =>  $user->id]) }}">
+                                        <a class="dropdown-item" href="{{route('users.edit', ['id' =>  $user->id]) }}">
                                             {{  $user->name }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -100,7 +100,7 @@
             </div>
         @endif
 
-        <div class="tbgwrap">
+        <div class="tbgwrap mt-4">
             @yield('content')
         </div>
     </div>

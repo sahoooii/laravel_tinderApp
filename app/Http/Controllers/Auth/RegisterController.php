@@ -90,7 +90,7 @@ class RegisterController extends Controller
      * @param .. Request $request
      * @return \App\Models\User
      */
-    static function create(Request $request)
+    protected function create(Request $request)
     {
         //img upload
         // dd($request->all());

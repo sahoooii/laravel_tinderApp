@@ -9,6 +9,7 @@ use App\Models\Swipe;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -26,13 +27,13 @@ class UserController extends Controller
         return view('pages.user.index', compact('notSwipeUser', 'user'));
     }
 
-    public function show($id)
-    {
-        $user = User::find(\Auth::user()->id);
-        // dd($user);
+    // public function show($id)
+    // {
+    //     $user = User::find(\Auth::user()->id);
+    //     // dd($user);
 
-        return view('pages.user.show', compact('user'));
-    }
+    //     return view('pages.user.show', compact('user'));
+    // }
 
     public function edit($id)
     {
@@ -47,24 +48,30 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'email', function ($name, $item, $fail) {
+                // もし既に使用されているemailなら弾く
+                if (count(User::where([
+                        ['email', $item],
+                        ['id', '<>',\Auth::user()->id]
+                    ])->get())) {
+                    $fail('This email address is already in use.');
+                }
+            }],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
-        $img_url = $request->img_url;
-        // dd($img_url);
-        if (!is_null($img_url) && $img_url->isValid()) {
-            $fileNameToStore =RegisterController::create($img_url);
-        }
 
         $user = User::find(\Auth::user()->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->password);
 
-        // if (!is_null($img_url) && $img_url->isValid()) {
-        //     $user->image = $fileNameToStore;
-        // }
+        //imgをuploadしなくてもerrorにならないように
+        if (!is_null($request->file('image')) && $request->file('image')->isValid()) {
+            $user->img_url = $fileName = $request->file('image')->getClientOriginalName();//file名取得
+            Storage::putFileAs('public/images', $request->file('image'), $fileName);
+            $fullFilePath = '/storage/images/' . $fileName;
+            $user->img_url =  $fullFilePath;
+        }
 
         $user->save();
 
