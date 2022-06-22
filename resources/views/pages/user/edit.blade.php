@@ -5,15 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Profile Edit</div>
+                <div class="card-header">Edit Your Profile</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', ['id' => $user->id]) }}">
+                    <form method="POST" action="{{ route('users.update', ['id' => $user->id]) }}" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
 
                         <div class="row mb-3">
-                                <input type="file" name="img_url" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto" style="font-size: 8px;">
+                                <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto" style="font-size: 8px;">
                         </div>
 
                         <div class="text-center mt-2 mb-4">
@@ -71,10 +71,12 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-								<button type="submit" class="btn btn-primary btn-lg">Update</button>
-                            </div>
+                        {{-- <div class="row mb-0"> --}}
+                        <div class="p-2 d-flex justify-content-around">
+                            <button type="button" onclick="location.href='{{ route('users.index') }}'" class="btn btn-outline-secondary focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
+                            {{-- <div class="col-md-6 offset-md-4"> --}}
+							<button type="submit" class="btn btn-primary">Update</button>
+                            {{-- </div> --}}
                         </div>
                     </form>
                 </div>
