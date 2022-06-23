@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 
-
 class RegisterController extends Controller
 {
     /*
@@ -58,6 +57,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            //追記
+            'gender' => 'required|boolean',
+            'height' => 'required|dimensions:min_width=140,min_height=220',
+            'occupation' => 'nullable|string|max:200',
+            'message' => 'nullable|max:3000'
         ]);
     }
 
@@ -105,6 +109,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'img_url' => $fullFilePath,
+            'gender' => $data['gender'], //追記
+            'height' => $data['height'],
+            'occupation' => $data['occupation'],
+            'message' => $data['message'],
         ]);
     }
 }

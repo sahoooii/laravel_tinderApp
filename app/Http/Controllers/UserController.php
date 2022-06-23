@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Swipe;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Auth\RegisterController;
+// use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller

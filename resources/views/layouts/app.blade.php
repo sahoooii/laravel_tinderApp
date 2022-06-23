@@ -100,7 +100,7 @@
             </div>
         @endif
 
-        <div class="tbgwrap mt-4">
+        <div class="tbgwrap mt-3">
             @yield('content')
         </div>
     </div>
