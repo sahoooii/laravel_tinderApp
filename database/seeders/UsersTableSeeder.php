@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -18,33 +19,49 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => Str::random(10),
+                'name' => 'Stacy',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
-                'img_url' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80+750w'
+                'img_url' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80+750w',
+                'gender' => 1,
+                'height' => 165,
+                'occupation' => 'Instagramer',
+                'message' => 'Hi everyone :). Love beach, bar... hell yeah Instagram!!!'
             ],
             [
-                'name' => Str::random(10),
+                'name' => 'Julia',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
-                'img_url' => 'https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=350&q=80'
+                'img_url' => 'https://images.unsplash.com/photo-1589571894960-20bbe2828d0a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=350&q=80',
+                'gender' => 1,
+                'height' => 155,
+                'occupation' => 'Model',
+                'message' => "I'm a model in New York. Hit me up and catch me if you can!"
+
             ],
             [
-                'name' => Str::random(10),
+                'name' => 'Lance',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
-                'img_url' => 'https://images.unsplash.com/photo-1552058544-f2b08422138a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=350&q=80'
+                'img_url' => 'https://images.unsplash.com/photo-1552058544-f2b08422138a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=350&q=80',
+                'gender' => 0,
+                'height' => 175,
+                'occupation' => 'Engineer',
+                'message' => "Hi there. I'm a computer nerd guy. Live in spooky SF. Also I'm a huge Warriors fan!"
             ],
             [
-                'name' => Str::random(10),
+                'name' => 'Cathy',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
-                'img_url' => 'https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=350&q=80'
+                'img_url' => 'https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=350&q=80',
+                'gender' => 1,
+                'height' => 170,
+                'occupation' => 'Influencer',
+                'message' => "What's up all? I'm a influencer who play 'The circle' season 4. If you notice me, I'm sure you already following me.Lol"
             ],
         ]);
 
-        // factory(User::class, 10)->create();
-        \App\Models\User::factory()->count(30)->create();
-
+        // \App\Models\User::factory()->count(30)->create();
+        User::factory()->count(30)->create();
     }
 }

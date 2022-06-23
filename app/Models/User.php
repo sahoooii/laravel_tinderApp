@@ -22,7 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'img_url'
+        'img_url',
+        'gender',
+        'height',
+        'occupation',
+        'message'
     ];
 
     /**
@@ -48,5 +52,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Swipe::class, 'id');
     }
-
 }
