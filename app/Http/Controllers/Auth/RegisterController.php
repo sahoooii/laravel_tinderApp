@@ -58,8 +58,9 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             //追記
+            'age' => 'required|integer|between: 18,55',
+            'height' => 'required|numeric|between: 140,220',
             'gender' => 'required|boolean',
-            'height' => 'required|dimensions:min_width=140,min_height=220',
             'occupation' => 'nullable|string|max:200',
             'message' => 'nullable|max:3000'
         ]);
@@ -109,8 +110,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'img_url' => $fullFilePath,
-            'gender' => $data['gender'], //追記
+            'age' => $data['age'],
             'height' => $data['height'],
+            'gender' => $data['gender'], //追記
             'occupation' => $data['occupation'],
             'message' => $data['message'],
         ]);

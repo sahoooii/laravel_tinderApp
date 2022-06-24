@@ -22,8 +22,9 @@ class UserFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'img_url' => $this->faker->imageUrl(),
             'remember_token' => Str::random(10),
-            'gender' => $this->faker->boolean,
+            'age' =>  $this->faker->numberBetween(18, 55),
             'height' =>  $this->faker->numberBetween(140, 220),
+            'gender' => $this->faker->boolean,
             'occupation' =>  $this->faker->jobTitle(),
             'message' =>  $this->faker->realText
         ];
