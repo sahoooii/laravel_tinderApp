@@ -21,8 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('img_url');
-            $table->boolean('gender');
+            $table->integer('age');
             $table->integer('height');
+            $table->boolean('gender');
             $table->string('occupation');
             $table->text('message');
             $table->timestamps();
