@@ -1,10 +1,11 @@
 @extends('layouts.app')
-{{-- <style>
-    .tbg {
-        height: 820px;
-    }
-</style> --}}
 @section('content')
+<style>
+    .tbg {
+        height: 1100px;
+    }
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -101,9 +102,9 @@
 
                         <div class="form-check form-check-inline d-sm-flex justify-content-evenly">
                             <label for="male" class="form-check-label">{{ __('Male') }}</label>
-                            <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" required autocomplete="gender">
+                            <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" {{ old('gender') == '0' ? 'checked' : '' }} required autocomplete="gender">
                             <label for="female" class="form-check-label">{{ __('Female') }}</label>
-                            <input id="female" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="1" required autocomplete="gender">
+                            <input id="female" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="1"  {{ old('gender') == '1' ? 'checked' : '' }} required autocomplete="gender">
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
