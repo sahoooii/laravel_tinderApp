@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $user = User::find(\Auth::user()->id);
 
-        // dd($user->password);
+        dd($user);
 
         return view('pages.user.edit', compact('user'));
     }
@@ -47,7 +47,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:50'],
+            'name' => ['required', 'string', 'min:4','max:50'],
             'email' => ['required', 'email', function ($name, $item, $fail) {
                 // もし既に使用されているemailなら弾く
                 if (count(User::where([

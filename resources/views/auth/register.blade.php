@@ -2,7 +2,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 1100px;
+        height: 1000px;
     }
 </style>
 
@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto" required style="font-size: 8px;">
+                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" required class="col-md-8 col-form-label text-md-end mx-auto" style="font-size: 8px;">
                         </div>
 
                         <div class="row mb-3">
