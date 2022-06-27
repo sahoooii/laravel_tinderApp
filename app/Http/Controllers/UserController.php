@@ -39,7 +39,7 @@ class UserController extends Controller
     {
         $user = User::find(\Auth::user()->id);
 
-        dd($user);
+        // dd($user);
 
         return view('pages.user.edit', compact('user'));
     }
@@ -58,12 +58,22 @@ class UserController extends Controller
                 }
             }],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'age' => ['required','integer','between: 18,55'],
+            'height' =>['required','numeric','between: 140,220'],
+            'gender' => ['required', 'boolean'],
+            'occupation' => ['nullable', 'string','max:200'],
+            'message' => ['nullable', 'max:3000']
         ]);
 
         $user = User::find(\Auth::user()->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->password);
+        $user->age = $request->input('age');
+        $user->height = $request->input('height');
+        $user->gender = $request->input('gender');
+        $user->occupation = $request->input('occupation');
+        $user->message = $request->input('message');
 
         //imgをuploadしなくてもerrorにならないように
         if (!is_null($request->file('image')) && $request->file('image')->isValid()) {
