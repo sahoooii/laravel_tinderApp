@@ -3,11 +3,11 @@
 @section('content')
 <div class="p-user-index">
 
-  @if (is_null( $notSwipeUser))
+  @if (is_null($notSwipeUser))
   <p class="text-center">There's no user around you...</p>
   @endif
 
-  @if (!is_null( $notSwipeUser))
+  @if (!is_null($notSwipeUser))
   <div class="tphoto">
       <img src="{{ $notSwipeUser->img_url }}" title="tphoto" alt="Tinder Photo" />
     <div class="tname">{{ $notSwipeUser->name }}</div>

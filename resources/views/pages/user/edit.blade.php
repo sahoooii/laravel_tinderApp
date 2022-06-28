@@ -138,7 +138,7 @@
                             <label for="message" class="col-md-4 col-form-label text-md-end">{{ __('message') }}</label>
 
                             <div class="col-md-7">
-                                <textarea rows="4" id="message" type="text" class="form-control @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ $user->message }}</textarea>
+                                <textarea rows="5" id="message" type="text" class="form-control @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ $user->message }}</textarea>
 
                                 @error('message')
                                     <span class="invalid-feedback" role="alert">
