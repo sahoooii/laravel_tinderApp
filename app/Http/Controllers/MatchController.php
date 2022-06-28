@@ -23,8 +23,25 @@ class MatchController extends Controller
                         ->where('is_like', true)
                         ->with('toUser')
                         ->get();
-        // dd( $matchedUsers);
 
-        return view('pages.match.index', compact('matchedUsers', 'user'));
+        return view('pages.match.index', compact('user', 'matchedUsers'));
+    }
+
+    public function show($id)
+    {
+        $user = User::find(\Auth::user()->id);
+
+        $matchedUserInfo = User::find($id);
+
+        if ($matchedUserInfo->gender === 0) {
+            $gender = 'male';
+        }
+        if ($matchedUserInfo->gender === 1) {
+            $gender = 'female';
+        }
+
+        // dd($matchedUserInfo);
+
+        return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender'));
     }
 }
