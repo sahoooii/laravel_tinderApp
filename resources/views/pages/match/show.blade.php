@@ -28,11 +28,11 @@
                         <p class="card-text">{{ $matchedUserInfo->message }}</p>
                         <button type="button" class="btn btn-outline-secondary text-black mr-2" disabled><i class="fas fa-venus-mars pr-1"></i>{{ $gender }}</button>
                         <button type="button" class="btn btn-outline-secondary text-black" disabled><i class="fas fa-ruler pr-1"></i>{{ $matchedUserInfo->height }}<span>cm</span></button>
-                        <button type="button" class="btn btn-outline-secondary text-black mt-2 d-block" disabled><i class="fas fa-briefcase"></i>{{ $matchedUserInfo->occupation }}</button>
+                        <button type="button" class="btn btn-outline-secondary text-black mt-2 d-block" disabled><i class="fas fa-briefcase pr-1"></i>{{ $matchedUserInfo->occupation }}</button>
                 </div>
-                {{-- from here --}}
-                <button type="button" onclick="location.href='{{ route('matches.index') }}'" class="btn btn-outline-secondary focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
-
+            </div>
+            <div class="d-grid gap-2 mt-2">
+                <button type="button" onclick="location.href='{{ route('matches.index') }}'" class="btn btn-outline-secondary btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
             </div>
         </div>
     </div>
