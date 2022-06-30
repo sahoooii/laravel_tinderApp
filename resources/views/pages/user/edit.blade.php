@@ -24,7 +24,7 @@
 
                         <div class="text-center mt-2 mb-4">
                             <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
-                            {{-- <img src="{{ asset('strage/images/' . $user->img_url) }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;"> --}}
+                            {{-- <img src="{{ asset($user->img_url) }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;"> --}}
                         </div>
 
                         <div class="row mb-3">

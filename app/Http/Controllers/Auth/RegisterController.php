@@ -111,7 +111,8 @@ class RegisterController extends Controller
 
         //InterventionImage
         // $file = $request->file('image');//file名取得
-        // $fileName = uniqid(rand() . '_');
+        // $file = $request->file('image');//file名取得
+        // $fileName = uniqid(rand() . '_');//randomなファイル名作成
         // $extension = $file->extension();
         // $fileNameToStore = $fileName . '.' .  $extension;
 
@@ -119,15 +120,15 @@ class RegisterController extends Controller
 
         // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
 
-        // dd($fileNameToStore, $resizedImage);
+        // dd($file, $resizedImage);
         $data = $request->all();
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            // 'img_url' => $fullFilePath,
             'img_url' =>  $fullFilePath,
+            // 'img_url' =>  $fileNameToStore,
             'age' => $data['age'],
             'height' => $data['height'],
             'gender' => $data['gender'], //追記
