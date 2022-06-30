@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 // use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 class UserController extends Controller
 {
@@ -83,6 +84,16 @@ class UserController extends Controller
             $fullFilePath = '/storage/images/' . $user->img_url;
             $user->img_url =  $fullFilePath;
         }
+        
+        // if (!is_null($request->file('image')) && $request->file('image')->isValid()) {
+        //     $fileName = uniqid(rand() . '_');//randomなファイル名作成
+        //     $extension = $file->extension();
+        //     $fileNameToStore = $fileName . '.' .  $extension;
+
+        // $resizedImage = InterventionImage::make($file)->resize(335, 400)->encode();
+
+        // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+        // }
 
         $user->save();
 
