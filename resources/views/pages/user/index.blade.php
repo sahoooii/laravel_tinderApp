@@ -10,7 +10,7 @@
   @if (!is_null($notSwipeUser))
   <div class="tphoto">
       <img src="{{ $notSwipeUser->img_url }}" title="tphoto" alt="Tinder Photo" />
-    <div class="tname">{{ $notSwipeUser->name }}</div>
+      {{-- <div class="tname">{{ $notSwipeUser->name }}</div> --}}
   </div>
 
   <div class="tcontrols">

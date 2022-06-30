@@ -23,7 +23,7 @@ class UserController extends Controller
         //swipeしていないuserを1つ取得
         $notSwipeUser = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
 
-        // dd($user->name);
+        // dd($user->img_url);
         return view('pages.user.index', compact('notSwipeUser', 'user'));
     }
 
@@ -75,11 +75,12 @@ class UserController extends Controller
         $user->occupation = $request->input('occupation');
         $user->message = $request->input('message');
 
+
         //imgをuploadしなくてもerrorにならないように
         if (!is_null($request->file('image')) && $request->file('image')->isValid()) {
-            $user->img_url = $fileName = $request->file('image')->getClientOriginalName();//file名取得
-            Storage::putFileAs('public/images', $request->file('image'), $fileName);
-            $fullFilePath = '/storage/images/' . $fileName;
+            $user->img_url = $request->file('image')->getClientOriginalName();//file名取得
+            Storage::putFileAs('public/images', $request->file('image'), $user->img_url);
+            $fullFilePath = '/storage/images/' . $user->img_url;
             $user->img_url =  $fullFilePath;
         }
 

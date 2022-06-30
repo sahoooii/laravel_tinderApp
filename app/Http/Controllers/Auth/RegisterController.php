@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 class RegisterController extends Controller
 {
@@ -104,16 +105,29 @@ class RegisterController extends Controller
         //img upload
         // dd($request->all());
         $fileName = $request->file('image')->getClientOriginalName();//file名取得
-        Storage::putFileAs('public/images', $request->file('image'), $fileName);
+        Storage::putFileAs('public/images', $request->file('image'), $fileName); //resize無しの場合
         $fullFilePath = '/storage/images/' . $fileName;
 
+
+        //InterventionImage
+        // $file = $request->file('image');//file名取得
+        // $fileName = uniqid(rand() . '_');
+        // $extension = $file->extension();
+        // $fileNameToStore = $fileName . '.' .  $extension;
+
+        // $resizedImage = InterventionImage::make($file)->resize(335, 400)->encode();
+
+        // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+
+        // dd($fileNameToStore, $resizedImage);
         $data = $request->all();
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'img_url' => $fullFilePath,
+            // 'img_url' => $fullFilePath,
+            'img_url' =>  $fullFilePath,
             'age' => $data['age'],
             'height' => $data['height'],
             'gender' => $data['gender'], //追記
