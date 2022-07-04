@@ -103,13 +103,29 @@ class RegisterController extends Controller
     protected function create(Request $request)
     {
         // dd($request->all());
-
+        
         //img upload
         $imageFile = $request->file('image');//file取得
 
         if (!is_null($imageFile) && $imageFile->isValid()) {
             $fullFilePath = ImageService::upload($imageFile, 'images');
         }
+
+
+        $data = $request->all();
+
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'img_url' =>  $fullFilePath,
+            'age' => $data['age'],
+            'height' => $data['height'],
+            'gender' => $data['gender'], //追記
+            'occupation' => $data['occupation'],
+            'message' => $data['message'],
+        ]);
+
 
         // $imageFile = $request->file('image')->getClientOriginalName();//file名取得
         // Storage::putFileAs('public/images', $request->file('image'), $imageFile);
@@ -126,19 +142,5 @@ class RegisterController extends Controller
         // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
 
         // dd($file, $resizedImage);
-
-        $data = $request->all();
-
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'img_url' =>  $fullFilePath,
-            'age' => $data['age'],
-            'height' => $data['height'],
-            'gender' => $data['gender'], //追記
-            'occupation' => $data['occupation'],
-            'message' => $data['message'],
-        ]);
     }
 }

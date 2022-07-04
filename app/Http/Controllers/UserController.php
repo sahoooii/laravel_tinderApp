@@ -67,24 +67,34 @@ class UserController extends Controller
             'message' => ['nullable', 'max:3000']
         ]);
 
+        //imgをuploadしなくてもerrorにならないように
+        $imageFile = $request->file('image');//file取得
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $fullFilePath = ImageService::upload($imageFile, 'images');
+        }
+
         $user = User::find(\Auth::user()->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->password);
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $user->img_url = $fullFilePath;
+        }
         $user->age = $request->input('age');
         $user->height = $request->input('height');
         $user->gender = $request->input('gender');
         $user->occupation = $request->input('occupation');
         $user->message = $request->input('message');
 
+        $user->save();
+
+        return redirect()
+        ->route('users.index')
+        ->with('flash_message', 'Updated your profile!');
+
+
         //imgをuploadしなくてもerrorにならないように
-        $imageFile = $request->file('image');//file取得
-
-        if (!is_null($imageFile) && $imageFile->isValid()) {
-            $user->img_url = ImageService::upload($imageFile, 'images');
-            // dd( $user->img_url);
-        }
-
+        // $imageFile = $request->file('image');//file取得
         // if (!is_null($img_url)) &&  $img_url->isValid()) {
         //     $user->img_url =  $img_url->getClientOriginalName();//file名取得
         //     Storage::putFileAs('public/images',  $img_url, $user->img_url);
@@ -102,11 +112,5 @@ class UserController extends Controller
 
         // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
         // }
-
-        $user->save();
-
-        return redirect()
-        ->route('users.index')
-        ->with('flash_message', 'Updated your profile!');
     }
 }
