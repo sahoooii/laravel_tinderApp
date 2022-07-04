@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 // use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
+use App\Services\ImageService;
 
 class UserController extends Controller
 {
@@ -76,15 +77,22 @@ class UserController extends Controller
         $user->occupation = $request->input('occupation');
         $user->message = $request->input('message');
 
-
         //imgをuploadしなくてもerrorにならないように
-        if (!is_null($request->file('image')) && $request->file('image')->isValid()) {
-            $user->img_url = $request->file('image')->getClientOriginalName();//file名取得
-            Storage::putFileAs('public/images', $request->file('image'), $user->img_url);
-            $fullFilePath = '/storage/images/' . $user->img_url;
-            $user->img_url =  $fullFilePath;
+        $imageFile = $request->file('image');//file取得
+
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $user->img_url = ImageService::upload($imageFile, 'images');
+            // dd( $user->img_url);
         }
-        
+
+        // if (!is_null($img_url)) &&  $img_url->isValid()) {
+        //     $user->img_url =  $img_url->getClientOriginalName();//file名取得
+        //     Storage::putFileAs('public/images',  $img_url, $user->img_url);
+        //     $fullFilePath = '/storage/images/' . $user->img_url;
+        //     $user->img_url =  $fullFilePath;
+        // }
+
+        //interventionImage
         // if (!is_null($request->file('image')) && $request->file('image')->isValid()) {
         //     $fileName = uniqid(rand() . '_');//randomなファイル名作成
         //     $extension = $file->extension();
