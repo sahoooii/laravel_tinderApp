@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
+use App\Services\ImageService;
 
 class RegisterController extends Controller
 {
@@ -49,7 +50,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array  $user
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -91,7 +92,6 @@ class RegisterController extends Controller
         return redirect()
         ->route('users.index')
         ->with('flash_message', 'Welcome to Tinder!!');
-
     }
 
     /**
@@ -102,15 +102,20 @@ class RegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        //img upload
         // dd($request->all());
-        $fileName = $request->file('image')->getClientOriginalName();//file名取得
-        Storage::putFileAs('public/images', $request->file('image'), $fileName); //resize無しの場合
-        $fullFilePath = '/storage/images/' . $fileName;
 
+        //img upload
+        $imageFile = $request->file('image');//file取得
+
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $fullFilePath = ImageService::upload($imageFile, 'images');
+        }
+
+        // $imageFile = $request->file('image')->getClientOriginalName();//file名取得
+        // Storage::putFileAs('public/images', $request->file('image'), $imageFile);
+        // $fullFilePath = '/storage/images/' . $imageFile;
 
         //InterventionImage
-        // $file = $request->file('image');//file名取得
         // $file = $request->file('image');//file名取得
         // $fileName = uniqid(rand() . '_');//randomなファイル名作成
         // $extension = $file->extension();
@@ -121,6 +126,7 @@ class RegisterController extends Controller
         // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
 
         // dd($file, $resizedImage);
+
         $data = $request->all();
 
         return User::create([
@@ -128,7 +134,6 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'img_url' =>  $fullFilePath,
-            // 'img_url' =>  $fileNameToStore,
             'age' => $data['age'],
             'height' => $data['height'],
             'gender' => $data['gender'], //追記
