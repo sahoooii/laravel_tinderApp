@@ -60,6 +60,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             //追記
+            'image' => ['image', 'mimes:png,jpg,jpeg', 'max:2048'],
             'age' => ['required','integer','between: 18,55'],
             'height' =>['required','numeric','between: 140,220'],
             'gender' => ['required', 'boolean'],
@@ -103,7 +104,7 @@ class RegisterController extends Controller
     protected function create(Request $request)
     {
         // dd($request->all());
-        
+
         //img upload
         $imageFile = $request->file('image');//file取得
 
