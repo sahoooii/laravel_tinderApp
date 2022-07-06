@@ -19,7 +19,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <input type="file" name="image" class="col-md-8 col-form-label text-md-end mx-auto @error('image') is-invalid @enderror" style="font-size: 8px;">
+                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto @error('image') is-invalid @enderror" style="font-size: 8px;">
                             <div class="text-center mt-2 mb-2">
                                 <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
                                 {{-- <img src="{{ asset($user->img_url) }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;"> --}}
