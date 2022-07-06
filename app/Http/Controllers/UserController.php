@@ -8,10 +8,10 @@ use App\Models\User;
 use App\Models\Swipe;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-// use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
 use App\Services\ImageService;
+use App\Http\Requests\UploadImageRequest;
 
 class UserController extends Controller
 {
@@ -46,7 +46,7 @@ class UserController extends Controller
         return view('pages.user.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         $request->validate([
             'name' => ['required', 'string', 'min:4','max:50'],
@@ -92,23 +92,13 @@ class UserController extends Controller
         ->route('users.index')
         ->with('flash_message', 'Updated your profile!');
 
-
-        //imgをuploadしなくてもerrorにならないように
-        // $imageFile = $request->file('image');//file取得
-        // if (!is_null($img_url)) &&  $img_url->isValid()) {
-        //     $user->img_url =  $img_url->getClientOriginalName();//file名取得
-        //     Storage::putFileAs('public/images',  $img_url, $user->img_url);
-        //     $fullFilePath = '/storage/images/' . $user->img_url;
-        //     $user->img_url =  $fullFilePath;
-        // }
-
         //interventionImage
-        // if (!is_null($request->file('image')) && $request->file('image')->isValid()) {
+        // if (!is_null($imageFile) &&  $imageFile->isValid()) {
         //     $fileName = uniqid(rand() . '_');//randomなファイル名作成
-        //     $extension = $file->extension();
+        //     $extension = $imageFile->extension();
         //     $fileNameToStore = $fileName . '.' .  $extension;
 
-        // $resizedImage = InterventionImage::make($file)->resize(335, 400)->encode();
+        // $resizedImage = InterventionImage::make($imageFile)->resize(335, 400)->encode();
 
         // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
         // }

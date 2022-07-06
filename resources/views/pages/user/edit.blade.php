@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 1000px;
+        height: 1150px;
     }
 </style>
 
@@ -19,12 +19,12 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto" style="font-size: 8px;">
-                        </div>
-
-                        <div class="text-center mt-2 mb-4">
-                            <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
-                            {{-- <img src="{{ asset($user->img_url) }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;"> --}}
+                            <input type="file" name="image" class="col-md-8 col-form-label text-md-end mx-auto @error('image') is-invalid @enderror" style="font-size: 8px;">
+                            <div class="text-center mt-2 mb-2">
+                                <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
+                                {{-- <img src="{{ asset($user->img_url) }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;"> --}}
+                            </div>
+                            <x-auth-validation-errors class="invalid-feedback" role="alert" :errors="$errors" />
                         </div>
 
                         <div class="row mb-3">
