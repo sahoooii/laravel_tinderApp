@@ -15,9 +15,8 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
-{{-- accept="image/jpeg, image/jpg, image/png" --}}
                         <div class="row mb-3">
-                            <input type="file" name="image" required class="col-md-8 col-form-label text-md-end mx-auto  @error('image') is-invalid @enderror" style="font-size: 8px;">
+                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" required class="col-md-8 col-form-label text-md-end mx-auto  @error('image') is-invalid @enderror" style="font-size: 8px;">
                             @error('image')
                                 <span class="invalid-feedback text-center" role="alert">
                                     <strong>{{ $message }}</strong>
