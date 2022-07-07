@@ -114,6 +114,7 @@ class RegisterController extends Controller
 
 
         $data = $request->all();
+        // dd( $fullFilePath);
 
         return User::create([
             'name' => $data['name'],
@@ -126,6 +127,7 @@ class RegisterController extends Controller
             'occupation' => $data['occupation'],
             'message' => $data['message'],
         ]);
+
 
 
         // $imageFile = $request->file('image')->getClientOriginalName();//file名取得
