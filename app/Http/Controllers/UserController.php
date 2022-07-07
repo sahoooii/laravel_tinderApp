@@ -94,9 +94,9 @@ class UserController extends Controller
         //     $extension = $imageFile->extension();
         //     $fileNameToStore = $fileName . '.' .  $extension;
 
-        // $resizedImage = InterventionImage::make($imageFile)->resize(335, 400)->encode();
+        //     $resizedImage = InterventionImage::make($imageFile)->resize(350, 500)->encode();
 
-        // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+        //     Storage::put('public/images/' . $fileNameToStore, $resizedImage);
         // }
     }
 }
