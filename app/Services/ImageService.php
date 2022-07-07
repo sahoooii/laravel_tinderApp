@@ -14,4 +14,8 @@ class ImageService
 
         return $fullFilePath;
     }
+
+    // $fullFilePath = '/storage/' .  $folderName . '/'. $fileName;
+    // /なしでedit表示　update表示されない
+
 }

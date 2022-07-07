@@ -25,7 +25,6 @@ class UserController extends Controller
         //swipeしていないuserを1つ取得
         $notSwipeUser = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
 
-        // dd($user->img_url);
         return view('pages.user.index', compact('notSwipeUser', 'user'));
     }
 
@@ -40,9 +39,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find(\Auth::user()->id);
-
-        // dd($user);
-
         return view('pages.user.edit', compact('user'));
     }
 

@@ -63,6 +63,61 @@ class UsersTableSeeder extends Seeder
                 'occupation' => 'Influencer',
                 'message' => "What's up all? I'm a influencer who play 'The circle' season 4. If you notice me, I'm sure you already following me.Lol"
             ],
+            [
+                'name' => 'Ryan',
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make('password'),
+                'img_url' => '/storage/images/asianGuy.jpg',
+                'age' => 26,
+                'height' => 180,
+                'gender' => 0,
+                'occupation' => 'Model',
+                'message' => "Hey girls! I'm an asian model in Hollywood. And someone recognized me huh? Haha yes, I'm in Too hot Too handle.Lol"
+            ],
+            [
+                'name' => 'Jack',
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make('password'),
+                'img_url' => '/storage/images/modelGuy.jpg',
+                'age' => 24,
+                'height' => 188,
+                'gender' => 0,
+                'occupation' => 'Fashion designer',
+                'message' => "Hi I'm Jack. I'm a fashion designer. I'm running my company and also part-time model sometimes. I'm not a creepy guy just too hot."
+            ],
+            [
+                'name' => 'Nialle',
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make('password'),
+                'img_url' => '/storage/images/whiteGuy.jpg',
+                'age' => 22,
+                'height' => 190,
+                'gender' => 0,
+                'occupation' => 'College student',
+                'message' => "Hello I'm a British guy. I'm new to here. If you like british accents, why don't you have a cup of tea in the English garden haha."
+            ],
+            [
+                'name' => 'April',
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make('password'),
+                'img_url' => '/storage/images/asianWoman.jpg',
+                'age' => 21,
+                'height' => 155,
+                'gender' => 1,
+                'occupation' => 'Model',
+                'message' => "Hello I'm April. I'm Korean American baby girl. I have to still show my ID get a beer.LOL"
+            ],
+            [
+                'name' => 'Taylor',
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make('password'),
+                'img_url' => '/storage/images/whiteGirl.jpg',
+                'age' => 18,
+                'height' => 172,
+                'gender' => 1,
+                'occupation' => 'Photographer',
+                'message' => "Hello I'm Taylor. I was born and raised in California. Love beach travel food and Netflix and chill in beach!"
+            ],
         ]);
 
         // \App\Models\User::factory()->count(30)->create();
