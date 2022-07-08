@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
-				<div class="card mb-3">
+				<div class="card mb-4">
 						<div class="card-header">Your Match</div>
 				</div>
 
@@ -22,8 +22,11 @@
 						</div>
 					@endforeach
 				</div>
+				<div class="d-flex justify-content-center mt-3">
+					{{ $matchedUsers->links() }}
+				</div>
+			</div>
 		</div>
-	</div>
 {{-- </div> --}}
 
 @endsection

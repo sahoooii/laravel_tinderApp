@@ -22,8 +22,8 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Stacy',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
-                'img_url' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80+750w',
-                'age' => 22,
+                'img_url' => '/storage/images/whiteWoman.jpg',
+                'age' => 28,
                 'height' => 165,
                 'gender' => 1,
                 'occupation' => 'Instagramer',
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
                 'height' => 155,
                 'gender' => 1,
                 'occupation' => 'Model',
-                'message' => "I'm a model in New York. Hit me up and catch me if you can!"
+                'message' => "I'm a british model in New York. Love to chill at the central park. New to NY, wanna grab a cup of tea?"
 
             ],
             [
@@ -64,7 +64,7 @@ class UsersTableSeeder extends Seeder
                 'message' => "What's up all? I'm a influencer who play 'The circle' season 4. If you notice me, I'm sure you already following me.Lol"
             ],
             [
-                'name' => 'Ryan',
+                'name' => 'Nick',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/asianGuy.jpg',
@@ -75,7 +75,7 @@ class UsersTableSeeder extends Seeder
                 'message' => "Hey girls! I'm an asian model in Hollywood. And someone recognized me huh? Haha yes, I'm in Too hot Too handle.Lol"
             ],
             [
-                'name' => 'Jack',
+                'name' => 'Harry',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/modelGuy.jpg',
@@ -83,18 +83,18 @@ class UsersTableSeeder extends Seeder
                 'height' => 188,
                 'gender' => 0,
                 'occupation' => 'Fashion designer',
-                'message' => "Hi I'm Jack. I'm a fashion designer. I'm running my company and also part-time model sometimes. I'm not a creepy guy just too hot."
+                'message' => "Hi I'm Harry. I'm a fashion designer. I'm running my company and also part-time model sometimes. I'm not a creepy guy just too hot.Lol"
             ],
             [
-                'name' => 'Nialle',
+                'name' => 'Ryan Sakata',
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
-                'img_url' => '/storage/images/whiteGuy.jpg',
+                'img_url' => '/storage/images/asianGuy2.jpg',
                 'age' => 22,
-                'height' => 190,
+                'height' => 188,
                 'gender' => 0,
-                'occupation' => 'College student',
-                'message' => "Hello I'm a British guy. I'm new to here. If you like british accents, why don't you have a cup of tea in the English garden haha."
+                'occupation' => 'Underwear model',
+                'message' => "Hello I'm Ryan. I'm new to here. I'm a model. If you notice me, you must go to Calvin Klein haha."
             ],
             [
                 'name' => 'April',
@@ -105,7 +105,7 @@ class UsersTableSeeder extends Seeder
                 'height' => 155,
                 'gender' => 1,
                 'occupation' => 'Model',
-                'message' => "Hello I'm April. I'm Korean American baby girl. I have to still show my ID get a beer.LOL"
+                'message' => "Hello I'm April. I'm a Korean American baby girl. I have to still show my ID to get a drink.LOL"
             ],
             [
                 'name' => 'Taylor',
@@ -115,8 +115,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 18,
                 'height' => 172,
                 'gender' => 1,
-                'occupation' => 'Photographer',
-                'message' => "Hello I'm Taylor. I was born and raised in California. Love beach travel food and Netflix and chill in beach!"
+                'occupation' => 'College Student',
+                'message' => "Hello I'm Taylor. I was born and raised in California. Love beach travel food and Netflix and chill at the beach!"
             ],
         ]);
 

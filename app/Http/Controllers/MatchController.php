@@ -22,7 +22,7 @@ class MatchController extends Controller
                         ->whereIn('to_user_id', $likedUserIds)
                         ->where('is_like', true)
                         ->with('toUser')
-                        ->get();
+                        ->paginate(5);
 
         return view('pages.match.index', compact('user', 'matchedUsers'));
     }
