@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 820px;
+        height: 860px;
     }
 
     .card-img-overlay {
