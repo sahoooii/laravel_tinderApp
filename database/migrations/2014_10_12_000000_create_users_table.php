@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('occupation');
             $table->text('message');
             $table->timestamps();
+            // $table->softDeletes();
         });
     }
 

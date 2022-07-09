@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 1150px;
+        height: 1100px;
     }
 </style>
 
@@ -156,7 +156,26 @@
                     </form>
                 </div>
             </div>
+
+            <form method="POST" action="{{ route('users.destroy', ['id' =>  $user->id]) }}" id="delete_{{ $user->id }}">
+                @csrf
+
+                <div class="d-grid gap-2 mt-2">
+                    <button type="button" data-id="{{ $user->id }}" onclick="deleteAccount(this)" class="btn btn-outline-light btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Delete Account</button>
+                    {{-- <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="btn btn-outline-light btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Delete Account</a> --}}
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+    'use strict';
+    function deleteAccount(e) {
+        if (confirm('Are you sure you want to delete your account?')) {
+            document.getElementById('delete_' + e.dataset.id).submit();
+        }
+    }
+</script>
+
 @endsection

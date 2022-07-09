@@ -99,4 +99,15 @@ class UserController extends Controller
         //     Storage::put('public/images/' . $fileNameToStore, $resizedImage);
         // }
     }
+
+    public function destroy($id)
+    {
+        // dd('delete');
+        User::find(\Auth::user()->id)->delete();
+
+        return redirect()
+        ->route('login')
+        ->with('flash_message', 'Your account has been deleted.');
+
+    }
 }
