@@ -86,7 +86,9 @@ class UserController extends Controller
 
         return redirect()
         ->route('users.index')
-        ->with('flash_message', 'Updated your profile!');
+        ->with(['flash_message' => 'Updated your profile!',
+                'status' => 'info'
+        ]);
 
         //interventionImage
         // if (!is_null($imageFile) &&  $imageFile->isValid()) {
@@ -107,7 +109,9 @@ class UserController extends Controller
 
         return redirect()
         ->route('login')
-        ->with('flash_message', 'Your account has been deleted.');
+        ->with(['flash_message' => 'Your account has been deleted.',
+                'status' => 'alert'
+        ]);
 
     }
 }
