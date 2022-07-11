@@ -28,7 +28,10 @@ class SwipeController extends Controller
         // $user = User::find(\Auth::user()->id);
 
         if ($isMatch) {
-            return redirect(route('users.index'))->with('flash_message', "You're matched!!" );
+            return redirect(route('users.index'))
+            ->with(['flash_message' => "You're matched!!",
+                    'status' => 'info'
+            ]);
         }
 
         return redirect(route('users.index'));
