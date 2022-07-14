@@ -53,21 +53,36 @@ class RegisterController extends Controller
      * @param  array  $user
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+    protected $messages = [
+        'age.between' => 'You can join us from age 18 to 55.',
+        'height.between' => 'Sorry, we have a height requirements 140cm to 220cm.',
+        'search_gender.required' => 'Please select what you want to date.',
+        'search_status.required' => 'Please select what you looking for.',
+        'occupation.max' => 'Please input 200 characters or less.',
+        'message.max' => 'Please input 3,000 characters or less.',
+    ];
+
+    protected $rules = [
+        'name' => ['required', 'string','min:4','max:50'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+        //追記
+        'image' => ['image', 'mimes:png,jpg,jpeg', 'max:2048'],
+        'age' => ['required','integer','between: 18,55'],
+        'height' =>['required','numeric','between: 140,220'],
+        'gender' => ['required', 'boolean'],
+        'search_gender' => ['required'],
+        'search_status' => ['required'],
+        'occupation' => ['nullable', 'string','max:200'],
+        'message' => ['nullable', 'max:3000']
+    ];
+
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string','min:4','max:50'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            //追記
-            'image' => ['image', 'mimes:png,jpg,jpeg', 'max:2048'],
-            'age' => ['required','integer','between: 18,55'],
-            'height' =>['required','numeric','between: 140,220'],
-            'gender' => ['required', 'boolean'],
-            'occupation' => ['nullable', 'string','max:200'],
-            'message' => ['nullable', 'max:3000']
-        ]);
+        return Validator::make($data, $this->rules, $this->messages);
     }
+
 
     /**
      * Handle a registration request for the application.
@@ -123,7 +138,9 @@ class RegisterController extends Controller
             'img_url' =>  $fullFilePath,
             'age' => $data['age'],
             'height' => $data['height'],
-            'gender' => $data['gender'], //追記
+            'gender' => $data['gender'],
+            'search_gender' => $data['search_gender'],
+            'search_status' => $data['search_status'],
             'occupation' => $data['occupation'],
             'message' => $data['message'],
         ]);

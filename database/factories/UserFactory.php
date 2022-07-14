@@ -25,6 +25,8 @@ class UserFactory extends Factory
             'age' =>  $this->faker->numberBetween(18, 55),
             'height' =>  $this->faker->numberBetween(140, 220),
             'gender' => $this->faker->boolean,
+            'search_gender' => $this->faker->numberBetween(0, 2),
+            'search_status' => $this->faker->numberBetween(0, 2),
             'occupation' =>  $this->faker->jobTitle(),
             'message' =>  $this->faker->realText
         ];

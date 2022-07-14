@@ -24,8 +24,10 @@ class CreateUsersTable extends Migration
             $table->integer('age');
             $table->integer('height');
             $table->boolean('gender');
-            $table->string('occupation');
-            $table->text('message');
+            $table->integer('search_gender');
+            $table->integer('search_status');
+            $table->string('occupation')->nullable();
+            $table->text('message')->nullable();
             $table->timestamps();
             // $table->softDeletes();
         });
