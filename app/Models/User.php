@@ -27,8 +27,22 @@ class User extends Authenticatable
         'age',
         'height',
         'gender',
+        'search_gender',
+        'search_status',
         'occupation',
         'message'
+    ];
+
+    public static $search_genders = [
+        0 => 'Man',
+        1 => 'Female',
+        2 => 'Both',
+    ];
+
+    public static $search_statuses = [
+        0 => 'Relationship',
+        1 => 'Something Casual',
+        2 => 'Friend',
     ];
 
     /**

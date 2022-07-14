@@ -2,8 +2,12 @@
 @section('content')
 <style>
     .tbg {
-        height: 1000px;
+        height: 1280px;
     }
+
+    /* .card {
+        height: 850px;
+    } */
 </style>
 
 <div class="container">
@@ -16,7 +20,7 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
-                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" required class="col-md-8 col-form-label text-md-end mx-auto  @error('image') is-invalid @enderror" style="font-size: 8px;">
+                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png"  class="col-md-8 col-form-label text-md-end mx-auto  @error('image') is-invalid @enderror" required style="font-size: 8px;">
                             @error('image')
                                 <span class="invalid-feedback text-center" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -76,9 +80,9 @@
 
                         <div class="d-flex justify-content-between">
                             <div class="row mb-3">
-                                <label for="age" class="col-md-4 col-form-label text-md-end fs-6">{{ __('Age') }}</label>
+                                <label for="age" class="col-md-5 col-form-label text-md-end fs-6">{{ __('Age') }}</label>
 
-                                <div class="col-md-7">
+                                <div class="col-md-7 pl-0">
                                     <input id="age" type="number" class="form-control text-center @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age">
 
                                     @error('age')
@@ -89,10 +93,10 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-3 ml-1">
                                 <label for="height" class="col-md-5 col-form-label text-md-end fs-6">{{ __('height') }}</label>
 
-                                <div class="col-md-7">
+                                <div class="col-md-7 pl-0">
                                     <input id="height" type="number" step="0.1" class="form-control text-center @error('height') is-invalid @enderror" name="height" value="{{ old('height') }}" required autocomplete="height">
 
                                     @error('height')
@@ -104,23 +108,50 @@
                             </div>
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex justify-content-evenly">
+                        <div class="form-check form-check-inline d-sm-flex justify-content-evenly mb-3">
                             <label for="male" class="form-check-label">{{ __('Male') }}</label>
                             <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" {{ old('gender') == '0' ? 'checked' : '' }} required autocomplete="gender">
                             <label for="female" class="form-check-label">{{ __('Female') }}</label>
                             <input id="female" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="1"  {{ old('gender') == '1' ? 'checked' : '' }} required autocomplete="gender">
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            @error('gender')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                            <select class="form-select @error('search_gender') is-invalid @enderror" aria-label="Default select example" name="search_gender" id="search_gender">
+                                <option value="">What you want to date?</option>
+                                @foreach (\App\Models\User::$search_genders as $key => $gender)
+                                    <option value="{{ $key }}" @if (old('search_gender') === $key) selected @endif>{{ $gender }}</option>
+                                @endforeach
+                            </select>
+                            @error('search_gender')
+                                <span class="invalid-feedback ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                            <select class="form-select @error('search_status') is-invalid @enderror" aria-label="Default select example" name="search_status" id="search_status">
+                                <option value="">What you looking for?</option>
+                                @foreach (\App\Models\User::$search_statuses as $key => $status)
+                                    <option value="{{ $key }}" @if (old('search_status') === $key) selected @endif>{{ $status }}</option>
+                                @endforeach
+                            </select>
+                            @error('search_status')
+                                <span class="invalid-feedback ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="row mb-3">
-                            <label for="occupation" class="col-md-4 col-form-label text-md-end">{{ __('Occupation') }}</label>
+                            <label for="occupation" class="col-md-4 col-form-label text-md-end pr-0">{{ __('Occupation') }}</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <input id="occupation" type="text" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ old('occupation') }}" autocomplete="occupation">
 
                                 @error('occupation')
@@ -132,10 +163,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="message" class="col-md-4 col-form-label text-md-end">{{ __('message') }}</label>
-
-                            <div class="col-md-7">
-                                <textarea rows="4" id="message" type="text" class="form-control @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ old('message') }}</textarea>
+                            <label for="message" class="col-md-4 col-form-label text-md-end">{{ __('Message') }}</label>
+                            <div class="col-md-8">
+                                <textarea rows="6" id="message" type="text" class="form-control fs-6 @error('message') is-invalid @enderror" name="message" placeholder="Tell us about yourself." autocomplete="message">{{ old('message') }}</textarea>
 
                                 @error('message')
                                     <span class="invalid-feedback" role="alert">
@@ -148,11 +178,12 @@
 
                         <div class="row mb-3">
                             <div class="col-md-7 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-lg mt-2">
                                     {{ __('Register') }}
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -26,6 +26,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 28,
                 'height' => 165,
                 'gender' => 1,
+                'search_gender' => 2,
+                'search_status' => 2,
                 'occupation' => 'Instagramer',
                 'message' => 'Hi everyone :). Love beach, bar... hell yeah Instagram!!!'
             ],
@@ -37,6 +39,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 26,
                 'height' => 155,
                 'gender' => 1,
+                'search_gender' => 0,
+                'search_status' => 1,
                 'occupation' => 'Model',
                 'message' => "I'm a british model in New York. Love to chill at the central park. New to NY, wanna grab a cup of tea?"
 
@@ -49,6 +53,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 33,
                 'height' => 175,
                 'gender' => 0,
+                'search_gender' => 2,
+                'search_status' => 0,
                 'occupation' => 'Engineer',
                 'message' => "Hi there. I'm a computer nerd guy. Live in spooky SF. Also I'm a huge Warriors fan!"
             ],
@@ -60,6 +66,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 28,
                 'height' => 170,
                 'gender' => 1,
+                'search_gender' => 0,
+                'search_status' => 1,
                 'occupation' => 'Influencer',
                 'message' => "What's up all? I'm a influencer who play 'The circle' season 4. If you notice me, I'm sure you already following me.Lol"
             ],
@@ -71,6 +79,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 26,
                 'height' => 180,
                 'gender' => 0,
+                'search_gender' => 1,
+                'search_status' => 1,
                 'occupation' => 'Model',
                 'message' => "Hey girls! I'm an asian model in Hollywood. And someone recognized me huh? Haha yes, I'm in Too hot Too handle.Lol"
             ],
@@ -82,6 +92,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 24,
                 'height' => 188,
                 'gender' => 0,
+                'search_gender' => 1,
+                'search_status' => 0,
                 'occupation' => 'Fashion designer',
                 'message' => "Hi I'm Harry. I'm a fashion designer. I'm running my company and also part-time model sometimes. I'm not a creepy guy just too hot.Lol"
             ],
@@ -93,6 +105,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 22,
                 'height' => 188,
                 'gender' => 0,
+                'search_gender' => 1,
+                'search_status' => 1,
                 'occupation' => 'Underwear model',
                 'message' => "Hello I'm Ryan. I'm new to here. I'm a model. If you notice me, you must go to Calvin Klein haha."
             ],
@@ -104,6 +118,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 21,
                 'height' => 155,
                 'gender' => 1,
+                'search_gender' => 2,
+                'search_status' => 1,
                 'occupation' => 'Model',
                 'message' => "Hello I'm April. I'm a Korean American baby girl. I have to still show my ID to get a drink.LOL"
             ],
@@ -115,6 +131,8 @@ class UsersTableSeeder extends Seeder
                 'age' => 18,
                 'height' => 172,
                 'gender' => 1,
+                'search_gender' => 2,
+                'search_status' => 0,
                 'occupation' => 'College Student',
                 'message' => "Hello I'm Taylor. I was born and raised in California. Love beach travel food and Netflix and chill at the beach!"
             ],

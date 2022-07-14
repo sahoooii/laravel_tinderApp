@@ -24,8 +24,11 @@ class UserController extends Controller
         $swipedUserIds = Swipe::where('from_user_id', \Auth::user()->id)->get()->pluck('to_user_id');
         //swipeしていないuserを1つ取得
         $notSwipeUser = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
-
+        // dd($notSwipeUser);
         return view('pages.user.index', compact('notSwipeUser', 'user'));
+
+        //look for gender 0, 1, 2(both)
+
     }
 
     // public function show($id)
