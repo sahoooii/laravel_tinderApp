@@ -55,6 +55,7 @@ class RegisterController extends Controller
      */
 
     protected $messages = [
+        'image.mimes' => 'The image must be a file of type: jpeg,png, jpg.',
         'age.between' => 'You can join us from age 18 to 55.',
         'height.between' => 'Sorry, we have a height requirements 140cm to 220cm.',
         'search_gender.required' => 'Please select what you want to date.',
@@ -67,8 +68,7 @@ class RegisterController extends Controller
         'name' => ['required', 'string','min:4','max:50'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
-        //追記
-        'image' => ['image', 'mimes:png,jpg,jpeg', 'max:2048'],
+        'image' => ['required','image', 'mimes:png,jpg,jpeg', 'max:2048'],
         'age' => ['required','integer','between: 18,55'],
         'height' =>['required','numeric','between: 140,220'],
         'gender' => ['required', 'boolean'],
@@ -107,7 +107,8 @@ class RegisterController extends Controller
         //             : redirect($this->redirectPath());
         return redirect()
         ->route('users.index')
-        ->with('flash_message', 'Welcome to Tinder!!');
+        ->with(['flash_message' => 'Welcome to Tinder!!',
+                'status' => 'info']);
     }
 
     /**
