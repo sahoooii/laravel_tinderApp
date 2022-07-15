@@ -20,7 +20,7 @@
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
-                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png"  class="col-md-8 col-form-label text-md-end mx-auto  @error('image') is-invalid @enderror" required style="font-size: 8px;">
+                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto  @error('image') is-invalid @enderror" required style="font-size: 8px;">
                             @error('image')
                                 <span class="invalid-feedback text-center" role="alert">
                                     <strong>{{ $message }}</strong>
