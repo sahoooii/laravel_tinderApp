@@ -10,6 +10,10 @@
   @if (!is_null($notSwipeUser))
   <div class="tphoto">
       <img src="{{ $notSwipeUser->img_url }}" title="tphoto" alt="Tinder Photo" />
+      <div class="card-img-overlay d-flex flex-row">
+          <h2 class="text-white text-left pl-4">{{ $notSwipeUser->name }}</h2>
+          <h2 class="text-white text-left pl-4">{{ $notSwipeUser->age }}</h2>
+      </div>
       {{-- <div class="tname">{{ $notSwipeUser->name }}</div> --}}
   </div>
 

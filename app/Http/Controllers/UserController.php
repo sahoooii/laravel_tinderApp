@@ -64,6 +64,8 @@ class UserController extends Controller
             'age' => ['required','integer','between: 18,55'],
             'height' =>['required','numeric','between: 140,220'],
             'gender' => ['required', 'boolean'],
+            'search_gender' => ['required','integer','between:0, 2'],
+            'search_status' => ['required','integer','between:0, 2'],
             'occupation' => ['nullable', 'string','max:200'],
             'message' => ['nullable', 'max:3000']
         ]);
@@ -84,6 +86,8 @@ class UserController extends Controller
         $user->age = $request->input('age');
         $user->height = $request->input('height');
         $user->gender = $request->input('gender');
+        $user->search_gender = $request->input('search_gender');
+        $user->search_status = $request->input('search_status');
         $user->occupation = $request->input('occupation');
         $user->message = $request->input('message');
 
