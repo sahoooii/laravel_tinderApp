@@ -19,16 +19,18 @@ class UserController extends Controller
     {
         //loginしているuser情報
         $user = User::find(\Auth::user()->id);
-
         //すでにswipeしたuserを省いて、idsを取得
-        $swipedUserIds = Swipe::where('from_user_id', \Auth::user()->id)->get()->pluck('to_user_id');
+        $swipedUserIds = Swipe::where('from_user_id', $user->id)->get()->pluck('to_user_id');
+
+        //swipeしていないuserを1つ取得,search_genderで切り分け
+        if ($user['search_gender'] === 2) {
+            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->first();
+        } else {
+            $notSwipeUser =User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->Where('gender', '=', $user['search_gender'])->first();
+        }
         //swipeしていないuserを1つ取得
-        $notSwipeUser = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
-        // dd($notSwipeUser);
+        // $notSwipeUser = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
         return view('pages.user.index', compact('notSwipeUser', 'user'));
-
-        //look for gender 0, 1, 2(both)
-
     }
 
     // public function show($id)
