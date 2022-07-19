@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
                 'age' => 28,
                 'height' => 165,
                 'gender' => 1,
-                'search_gender' => 2,
+                'search_gender' => 1,
                 'search_status' => 2,
                 'occupation' => 'Instagramer',
                 'message' => 'Hi everyone :). Love beach, bar... hell yeah Instagram!!!'

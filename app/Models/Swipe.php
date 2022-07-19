@@ -19,7 +19,6 @@ class Swipe extends Model
 
     public function toUser()
     {
-        // return $this->belongsTo('App\Models\User', 'to_user_id', 'id');
         return $this->belongsTo(User::class, 'to_user_id', 'id');
     }
 }
