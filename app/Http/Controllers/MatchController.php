@@ -40,8 +40,18 @@ class MatchController extends Controller
             $gender = 'female';
         }
 
+        if ($matchedUserInfo->search_status === 0) {
+            $search_status = 'Relationship';
+        }
+        if ($matchedUserInfo->search_status === 1) {
+            $search_status = 'Something Casual';
+        }
+        if ($matchedUserInfo->search_status === 2) {
+            $search_status = 'Friend';
+        }
+
         // dd($matchedUserInfo);
 
-        return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender'));
+        return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));
     }
 }

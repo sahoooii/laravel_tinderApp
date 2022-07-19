@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 1100px;
+        height: 1280px;
     }
 </style>
 
@@ -94,7 +94,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="hight" class="col-md-5 col-form-label text-md-end">{{ __('Height') }}</label>
+                                <label for="height" class="col-md-5 col-form-label text-md-end">{{ __('Height') }}</label>
 
                                 <div class="col-md-7">
                                     <input id="height" type="number" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ $user->height }}" required autocomplete="height">
@@ -108,7 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex justify-content-evenly">
+                        <div class="form-check form-check-inline d-sm-flex justify-content-evenly mb-3">
                             <label for="male" class="form-check-label">{{ __('Male') }}</label>
                             <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif required autocomplete="gender">
                             <label for="female" class="form-check-label">{{ __('Female') }}</label>
@@ -118,11 +118,40 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
                         </div>
 
+                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                            <select class="form-select @error('search_gender') is-invalid @enderror" aria-label="Default select example" name="search_gender" id="search_gender">
+                                <option value="">What you want to date?</option>
+                                @foreach (\App\Models\User::$search_genders as $key => $gender)
+                                    <option value="{{ $key }}" @if ($user->search_gender === $key) selected @endif>{{ $gender }}</option>
+                                @endforeach
+                            </select>
+                            @error('search_gender')
+                                <span class="invalid-feedback ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                            <select class="form-select @error('search_status') is-invalid @enderror" aria-label="Default select example" name="search_status" id="search_status">
+                                <option value="">What you looking for?</option>
+                                @foreach (\App\Models\User::$search_statuses as $key => $status)
+                                    <option value="{{ $key }}" @if ($user->search_status === $key) selected @endif>{{ $status }}</option>
+                                @endforeach
+                            </select>
+                            @error('search_status')
+                                <span class="invalid-feedback ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+
+
                         <div class="row mb-3">
-                            <label for="occupation" class="col-md-4 col-form-label text-md-end">{{ __('Occupation') }}</label>
+                            <label for="occupation" class="col-md-4 col-form-label text-md-end fs-6">{{ __('Occupation') }}</label>
 
                             <div class="col-md-7">
                                 <input id="occupation" type="text" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ ($user->occupation) }}" autocomplete="occupation">
@@ -136,7 +165,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="message" class="col-md-4 col-form-label text-md-end">{{ __('message') }}</label>
+                            <label for="message" class="col-md-4 col-form-label text-md-end">{{ __('Message') }}</label>
 
                             <div class="col-md-7">
                                 <textarea rows="5" id="message" type="text" class="form-control @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ $user->message }}</textarea>
