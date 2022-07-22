@@ -92,7 +92,7 @@ class UsersTableSeeder extends Seeder
                 'age' => 24,
                 'height' => 188,
                 'gender' => 0,
-                'search_gender' => 1,
+                'search_gender' => 0,
                 'search_status' => 0,
                 'occupation' => 'Fashion designer',
                 'message' => "Hi I'm Harry. I'm a fashion designer. I'm running my company and also part-time model sometimes. I'm not a creepy guy just too hot.Lol"

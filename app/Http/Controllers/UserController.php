@@ -23,13 +23,39 @@ class UserController extends Controller
         $swipedUserIds = Swipe::where('from_user_id', $user->id)->get()->pluck('to_user_id');
 
         //swipeしていないuserを1つ取得,search_genderで切り分け
-        if ($user['search_gender'] === 2) {
-            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->first();
-        } else {
-            $notSwipeUser =User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->Where('gender', '=', $user['search_gender'])->first();
+        //look for both $user=man
+        if ($user['search_gender'] === 2 && $user['gender'] === 0) {
+            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->whereIn('gender', [0,1])->whereIn('search_gender', [0, 2])->first();
         }
-        //swipeしていないuserを1つ取得
-        // $notSwipeUser = User::where('id', '<>', \Auth::user()->id)->whereNotIn('id', $swipedUserIds)->first();
+        //look for both $user=woman
+        if ($user['search_gender'] === 2 && $user['gender'] === 1) {
+            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->whereIn('gender', [0,1])->whereIn('search_gender', [1, 2])->first();
+        }
+        // if ($user['search_gender'] === 2 && $user['gender'] === 0) {
+        //     $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [0, 2])->first();
+        // } elseif ($user['search_gender'] === 2 && $user['gender'] === 0) {
+        //     $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 1)->whereIn('search_gender', [0, 2])->first();
+        // }
+
+        // if ($user['search_gender'] === 2 && $user['gender'] === 1) {
+        //     $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 1)->whereIn('search_gender', [1,2])->first();
+        // } elseif ($user['search_gender'] === 2 && $user['gender'] === 1) {
+        //     $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [1, 2])->first();
+        // }
+
+        //look for man man to man, man to woman
+        if ($user['search_gender'] === 0 && $user['gender'] === 0) {
+            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [0,2])->first();
+        } elseif ($user['search_gender'] === 0 && $user['gender'] === 1) {
+            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [1,2])->first();
+        }
+        //look for woman woman to woman, woman to man
+        if ($user['search_gender'] === 1 && $user['gender'] === 1) {
+            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 1)->whereIn('search_gender', [1,2])->first();
+        } elseif ($user['search_gender'] === 1 && $user['gender'] === 0) {
+            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 1)->whereIn('search_gender', [0,2])->first();
+        }
+
         return view('pages.user.index', compact('notSwipeUser', 'user'));
     }
 
@@ -121,6 +147,5 @@ class UserController extends Controller
         ->with(['flash_message' => 'Your account has been deleted.',
                 'status' => 'alert'
         ]);
-
     }
 }
