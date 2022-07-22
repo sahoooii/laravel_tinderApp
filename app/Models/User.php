@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Swipe;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,26 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'img_url',
+        'age',
+        'height',
+        'gender',
+        'search_gender',
+        'search_status',
+        'occupation',
+        'message'
+    ];
+
+    public static $search_genders = [
+        0 => 'Man',
+        1 => 'Female',
+        2 => 'Both',
+    ];
+
+    public static $search_statuses = [
+        0 => 'Relationship',
+        1 => 'Something Casual',
+        2 => 'Friend',
     ];
 
     /**
@@ -41,4 +63,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function swipe()
+    {
+        return $this->hasOne(Swipe::class, 'id');
+    }
 }
