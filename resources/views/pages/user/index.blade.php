@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+      .card-img-overlay {
+        padding: 0;
+        top: calc(80% - 0.5rem);
+        font-weight: bold;
+    }
+
+</style>
 <div class="p-user-index">
 
   @if (is_null($notSwipeUser))
@@ -14,7 +22,6 @@
           <h2 class="text-white text-left pl-4">{{ $notSwipeUser->name }}</h2>
           <h2 class="text-white text-left pl-4">{{ $notSwipeUser->age }}</h2>
       </div>
-      {{-- <div class="tname">{{ $notSwipeUser->name }}</div> --}}
   </div>
 
   <div class="tcontrols">
