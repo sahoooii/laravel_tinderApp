@@ -12,14 +12,23 @@ class UserFactory extends Factory
      *
      * @return array
      */
+
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->firstName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'img_url' => $this->faker->imageUrl(),
             'remember_token' => Str::random(10),
+            'age' =>  $this->faker->numberBetween(18, 55),
+            'height' =>  $this->faker->numberBetween(140, 220),
+            'gender' => $this->faker->boolean,
+            'search_gender' => $this->faker->numberBetween(0, 2),
+            'search_status' => $this->faker->numberBetween(0, 2),
+            'occupation' =>  $this->faker->jobTitle(),
+            'message' =>  $this->faker->realText
         ];
     }
 
