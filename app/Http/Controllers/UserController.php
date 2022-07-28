@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
 use App\Services\ImageService;
-use App\Http\Requests\UploadImageRequest;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -70,32 +70,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find(\Auth::user()->id);
+
         return view('pages.user.edit', compact('user'));
     }
 
-    public function update(UploadImageRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:4','max:50'],
-            'email' => ['required', 'email', function ($name, $item, $fail) {
-                // もし既に使用されているemailなら弾く
-                if (count(User::where([
-                        ['email', $item],
-                        ['id', '<>',\Auth::user()->id]
-                    ])->get())) {
-                    $fail('This email address is already in use.');
-                }
-            }],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'age' => ['required','integer','between: 18,55'],
-            'height' =>['required','numeric','between: 140,220'],
-            'gender' => ['required', 'boolean'],
-            'search_gender' => ['required','integer','between:0, 2'],
-            'search_status' => ['required','integer','between:0, 2'],
-            'occupation' => ['nullable', 'string','max:200'],
-            'message' => ['nullable', 'max:3000']
-        ]);
-
         //imgをuploadしなくてもerrorにならないように
         $imageFile = $request->file('image');//file取得
         if (!is_null($imageFile) && $imageFile->isValid()) {
