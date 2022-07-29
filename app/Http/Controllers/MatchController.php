@@ -33,6 +33,7 @@ class MatchController extends Controller
 
         $matchedUserInfo = User::find($id);
 
+        //gender表記
         if ($matchedUserInfo->gender === 0) {
             $gender = 'male';
         }
@@ -40,6 +41,7 @@ class MatchController extends Controller
             $gender = 'female';
         }
 
+        //search_status表記
         if ($matchedUserInfo->search_status === 0) {
             $search_status = 'Relationship';
         }
@@ -49,8 +51,6 @@ class MatchController extends Controller
         if ($matchedUserInfo->search_status === 2) {
             $search_status = 'Friend';
         }
-
-        // dd($matchedUserInfo);
 
         return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));
     }
