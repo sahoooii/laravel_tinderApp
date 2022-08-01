@@ -14,11 +14,11 @@ class MatchController extends Controller
         $user = User::find(\Auth::user()->id);
 
         //自分にlikeしてくれたuser ids
-        $likedUserIds = Swipe::where('to_user_id', \Auth::user()->id)
+        $likedUserIds = Swipe::where('to_user_id', $user->id)
                         ->where('is_like', true)
                         ->pluck('from_user_id');
 
-        $matchedUsers = Swipe::where('from_user_id', \Auth::user()->id)
+        $matchedUsers = Swipe::where('from_user_id', $user->id)
                         ->whereIn('to_user_id', $likedUserIds)
                         ->where('is_like', true)
                         ->with('toUser')
@@ -29,9 +29,49 @@ class MatchController extends Controller
 
     public function show($id)
     {
-        $user = User::find(\Auth::user()->id);
+    $user = User::find(\Auth::user()->id);
 
-        $matchedUserInfo = User::find($id);
+    //パラメータのidを取得
+    if (is_null(User::find($id))) {
+        return redirect()
+        ->route('matches.index');
+    } else {
+        $user_id = User::find($id)->id;
+    }
+    // dd($user_id);
+
+    //自分とマッチした人の情報だけ取得
+    //自分にlikeしてくれたuser ids
+    $likedUserIds = Swipe::where('to_user_id', $user->id)
+                    ->where('is_like', true)
+                    ->pluck('from_user_id');
+
+    //自分がマッチしたuserの情報のみを取得する
+    $matchedUsers = Swipe::where('from_user_id', $user->id)
+                    ->whereIn('to_user_id', $likedUserIds)
+                    ->where('is_like', true)
+                    ->get();
+
+    $matchedUserIds = [];
+    foreach ($matchedUsers as $matchedUser) {
+        $matchedUserIds[] = $matchedUser->to_user_id;
+        $result = in_array($user_id, $matchedUserIds);
+    }
+    // dd($result);
+
+    if ($result) {
+        $matchedUserInfo =  User::find($id);
+    } else {
+        return redirect()
+        ->route('matches.index')
+        ->with(['flash_message' => 'You can see only your matched user.',
+                'status' => 'alert'
+        ]);
+    }
+        // dd($result['to_user_id']);
+        // $memo = Memo::where('status', 1)->where('id', $id)->where('user_id', $user->id)->first();
+        // $matchedUserInfo = User::where('id', $matchedUserId)->get();
+        // dd($matchedUserId);
 
         //gender表記
         if ($matchedUserInfo->gender === 0) {
@@ -52,6 +92,6 @@ class MatchController extends Controller
             $search_status = 'Friend';
         }
 
-        return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));
+        return view('pages.match.show', compact('user', 'matchedUsers', 'matchedUserInfo', 'gender', 'search_status'));
     }
 }

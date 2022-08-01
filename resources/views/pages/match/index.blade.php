@@ -14,6 +14,7 @@
 				@endif
 
 				@foreach ($matchedUsers as $matchedUser)
+				{{-- <p>{{$matchedUser->to_user_id}}</p> --}}
 					<div class="col-md-12 mb-3 ml-2">
 						<img src="{{ $matchedUser->toUser->img_url }}" alt="img" class="rounded-circle" style="height: 70px; width: 70px; object-fit:cover;">
 						<a href="{{route('matches.show', ['id' =>  $matchedUser->toUser->id]) }}" class="streched-link ml-4 text-decoration-none" style="font-size: 18px;">
