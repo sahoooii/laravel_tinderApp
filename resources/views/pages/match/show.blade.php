@@ -22,7 +22,6 @@
                     <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->name }}</h2>
                     <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->age }}</h2>
                 </div>
-
                 <div class="card-body">
                     <h5 class="card-title">About Me</h5>
                         <p class="card-text">{{ $matchedUserInfo->message }}</p>
