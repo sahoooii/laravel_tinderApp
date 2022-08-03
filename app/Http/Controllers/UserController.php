@@ -84,7 +84,7 @@ class UserController extends Controller
         return redirect()
         ->route('login')
         ->with(['flash_message' => 'Your account has been deleted.',
-                'status' => 'alert'
+            'status' => 'alert'
         ]);
     }
 }
