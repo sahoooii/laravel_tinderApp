@@ -25,12 +25,18 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    // Route::get('/users/show/{id}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/update/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::post('/users/destroy/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('', [UserController::class, 'index'])->name('users.index');
+        Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('update/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::post('destroy/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    });
+
     Route::post('/swipes', [SwipeController::class, 'store'])->name('swipes.store');
-    Route::get('/matches', [MatchController::class, 'index'])->name('matches.index');
-    Route::get('/matches/show/{id}', [MatchController::class, 'show'])->name('matches.show');
+
+    Route::group(['prefix' => 'matches'], function () {
+        Route::get('', [MatchController::class, 'index'])->name('matches.index');
+        Route::get('show/{id}', [MatchController::class, 'show'])->name('matches.show');
+    });
+
 });

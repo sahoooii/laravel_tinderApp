@@ -151,9 +151,9 @@
 
 
                         <div class="row mb-3">
-                            <label for="occupation" class="col-md-4 col-form-label text-md-end fs-6">{{ __('Occupation') }}</label>
+                            <label for="occupation" class="col-md-4 col-form-label text-md-end pr-0">{{ __('Occupation') }}</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <input id="occupation" type="text" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ ($user->occupation) }}" autocomplete="occupation">
 
                                 @error('occupation')
@@ -167,8 +167,8 @@
                         <div class="row mb-3">
                             <label for="message" class="col-md-4 col-form-label text-md-end">{{ __('Message') }}</label>
 
-                            <div class="col-md-7">
-                                <textarea rows="5" id="message" type="text" class="form-control @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ $user->message }}</textarea>
+                            <div class="col-md-8">
+                                <textarea rows="6" id="message" type="text" class="form-control  @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ $user->message }}</textarea>
 
                                 @error('message')
                                     <span class="invalid-feedback" role="alert">

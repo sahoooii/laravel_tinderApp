@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Swipe;
+use App\Services\MatchedUserIdService;
+use App\Services\MatchedUserInfoService;
 
 class MatchController extends Controller
 {
@@ -14,11 +15,11 @@ class MatchController extends Controller
         $user = User::find(\Auth::user()->id);
 
         //自分にlikeしてくれたuser ids
-        $likedUserIds = Swipe::where('to_user_id', \Auth::user()->id)
+        $likedUserIds = Swipe::where('to_user_id', $user->id)
                         ->where('is_like', true)
                         ->pluck('from_user_id');
 
-        $matchedUsers = Swipe::where('from_user_id', \Auth::user()->id)
+        $matchedUsers = Swipe::where('from_user_id', $user->id)
                         ->whereIn('to_user_id', $likedUserIds)
                         ->where('is_like', true)
                         ->with('toUser')
@@ -31,26 +32,32 @@ class MatchController extends Controller
     {
         $user = User::find(\Auth::user()->id);
 
-        $matchedUserInfo = User::find($id);
+        //パラメータのidを取得,存在しないuser_idはredirect
+        if (is_null(User::find($id))) {
+            return redirect()
+            ->route('matches.index');
+        } else {
+            $user_id = User::find($id)->id;
+        }
+
+        $matchedUserId = MatchedUserIdService::matchedUserId($user_id);
+
+        //$matchedUserIdがtrueならuser情報を取得,falseならredirect
+        if ($matchedUserId) {
+            $matchedUserInfo =  User::find($id);
+        } else {
+            return redirect()
+            ->route('matches.index')
+            ->with(['flash_message' => 'You can only see your matched user.',
+                'status' => 'alert'
+            ]);
+        }
 
         //gender表記
-        if ($matchedUserInfo->gender === 0) {
-            $gender = 'male';
-        }
-        if ($matchedUserInfo->gender === 1) {
-            $gender = 'female';
-        }
+        $gender = MatchedUserInfoService::userGender($matchedUserInfo->gender);
 
-        //search_status表記
-        if ($matchedUserInfo->search_status === 0) {
-            $search_status = 'Relationship';
-        }
-        if ($matchedUserInfo->search_status === 1) {
-            $search_status = 'Something Casual';
-        }
-        if ($matchedUserInfo->search_status === 2) {
-            $search_status = 'Friend';
-        }
+        // //search_status表記
+        $search_status = MatchedUserInfoService::userSearchStatus($matchedUserInfo->search_status);
 
         return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));
     }
