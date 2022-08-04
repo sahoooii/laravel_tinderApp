@@ -9,10 +9,10 @@ use App\Models\Swipe;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use InterventionImage;
 use App\Services\ImageService;
 use App\Services\SearchGenderService;
 use App\Http\Requests\UserRequest;
+use InterventionImage;
 
 class UserController extends Controller
 {
@@ -63,22 +63,10 @@ class UserController extends Controller
         ->with(['flash_message' => 'Updated your profile!',
                 'status' => 'info'
         ]);
-
-        //interventionImage
-        // if (!is_null($imageFile) &&  $imageFile->isValid()) {
-        //     $fileName = uniqid(rand() . '_');//randomなファイル名作成
-        //     $extension = $imageFile->extension();
-        //     $fileNameToStore = $fileName . '.' .  $extension;
-
-        //     $resizedImage = InterventionImage::make($imageFile)->resize(350, 500)->encode();
-
-        //     Storage::put('public/images/' . $fileNameToStore, $resizedImage);
-        // }
     }
 
     public function destroy($id)
     {
-        // dd('delete');
         User::find(\Auth::user()->id)->delete();
 
         return redirect()

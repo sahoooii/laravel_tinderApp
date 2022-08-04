@@ -115,20 +115,5 @@ class RegisterController extends Controller
             'message' => $data['message'],
         ]);
 
-        // $imageFile = $request->file('image')->getClientOriginalName();//file名取得
-        // Storage::putFileAs('public/images', $request->file('image'), $imageFile);
-        // $fullFilePath = '/storage/images/' . $imageFile;
-
-        //InterventionImage
-        // $file = $request->file('image');//file名取得
-        // $fileName = uniqid(rand() . '_');//randomなファイル名作成
-        // $extension = $file->extension();
-        // $fileNameToStore = $fileName . '.' .  $extension;
-
-        // $resizedImage = InterventionImage::make($file)->resize(335, 400)->encode();
-
-        // Storage::put('public/images/' . $fileNameToStore, $resizedImage);
-
-        // dd($file, $resizedImage);
     }
 }
