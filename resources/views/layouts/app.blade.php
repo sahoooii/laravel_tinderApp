@@ -30,7 +30,7 @@
 <div id="app">
     <div class="tbg">
         <div class="theader">
-            <nav class="navbar navbar-expand-md navbar-light bg-white">
+            <nav class="navbar navbar-expand navbar-light bg-white">
                 <div class="container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
@@ -101,7 +101,7 @@
         @endif --}}
         <x-flash-message status="session('status')" />
 
-        <div class="tbgwrap mt-3">
+        <div class="tbgwrap mt-2">
             @yield('content')
         </div>
     </div>

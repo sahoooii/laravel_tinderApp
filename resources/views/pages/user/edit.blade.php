@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 1280px;
+        height: 1300px;
     }
 </style>
 
@@ -18,7 +18,7 @@
                         @method('PUT')
                         @csrf
 
-                        <div class="row mb-3">
+                        <div class="row mb-1">
                             <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto @error('image') is-invalid @enderror" style="font-size: 8px;">
                             <div class="text-center mt-2 mb-2">
                                 <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
@@ -27,7 +27,7 @@
                             <x-auth-validation-errors class="invalid-feedback" role="alert" :errors="$errors" />
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
 
                             <div class="col-md-6">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-2">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
@@ -79,7 +79,7 @@
 
                         {{-- 追記 age height gender occupation message --}}
                         <div class="d-flex justify-content-between">
-                            <div class="row mb-3">
+                            <div class="row mb-2">
                                 <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('Age') }}</label>
 
                                 <div class="col-md-7">
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-2">
                                 <label for="height" class="col-md-5 col-form-label text-md-end">{{ __('Height') }}</label>
 
                                 <div class="col-md-7">
@@ -108,11 +108,11 @@
                             </div>
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex justify-content-evenly mb-3">
+                        <div class="form-check form-check-inline d-flex justify-content-around mb-3 mt-2">
                             <label for="male" class="form-check-label">{{ __('Male') }}</label>
                             <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif required autocomplete="gender">
                             <label for="female" class="form-check-label">{{ __('Female') }}</label>
-                            <input id="female" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="1"   @if ( $user->gender == '1') { checked } @endif required autocomplete="gender">
+                            <input id="female" type="radio" class="form-check-input  @error('gender') is-invalid @enderror" name="gender" value="1"   @if ( $user->gender == '1') { checked } @endif required autocomplete="gender">
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -120,7 +120,7 @@
                                 @enderror
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                        <div class="form-check form-check-inline d-flex mb-3">
                             <select class="form-select @error('search_gender') is-invalid @enderror" aria-label="Default select example" name="search_gender" id="search_gender">
                                 <option value="">What you want to date?</option>
                                 @foreach (\App\Models\User::$search_genders as $key => $gender)
@@ -134,7 +134,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                        <div class="form-check form-check-inline d-flex mb-3">
                             <select class="form-select @error('search_status') is-invalid @enderror" aria-label="Default select example" name="search_status" id="search_status">
                                 <option value="">What you looking for?</option>
                                 @foreach (\App\Models\User::$search_statuses as $key => $status)
@@ -178,7 +178,7 @@
                             </div>
                         </div>
 
-                        <div class="p-2 mb-4 d-flex justify-content-around">
+                        <div class="p-2 mb-2 d-flex justify-content-around">
                             <button type="button" onclick="location.href='{{ route('users.index') }}'" class="btn btn-outline-secondary focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
 							<button type="submit" class="btn btn-primary">Update</button>
                         </div>
