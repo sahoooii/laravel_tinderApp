@@ -108,7 +108,7 @@
                             </div>
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex justify-content-evenly mb-3">
+                        <div class="form-check form-check-inline d-flex justify-content-evenly mb-3">
                             <label for="male" class="form-check-label">{{ __('Male') }}</label>
                             <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" {{ old('gender') == '0' ? 'checked' : '' }} required autocomplete="gender">
                             <label for="female" class="form-check-label">{{ __('Female') }}</label>
@@ -120,7 +120,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                        <div class="form-check form-check-inline d-flex mb-3">
                             <select class="form-select @error('search_gender') is-invalid @enderror" aria-label="Default select example" name="search_gender" id="search_gender">
                                 <option value="">What you want to date?</option>
                                 @foreach (\App\Models\User::$search_genders as $key => $gender)
@@ -134,7 +134,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-check form-check-inline d-sm-flex mb-3">
+                        <div class="form-check form-check-inline d-flex mb-3">
                             <select class="form-select @error('search_status') is-invalid @enderror" aria-label="Default select example" name="search_status" id="search_status">
                                 <option value="">What you looking for?</option>
                                 @foreach (\App\Models\User::$search_statuses as $key => $status)
