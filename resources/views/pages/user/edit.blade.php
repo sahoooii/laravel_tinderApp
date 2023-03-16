@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">Edit Your Profile</div>
 
@@ -19,7 +19,7 @@
                         @csrf
 
                         <div class="row mb-1">
-                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-md-8 col-form-label text-md-end mx-auto @error('image') is-invalid @enderror" style="font-size: 8px;">
+                            <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-8 col-form-label mx-auto mb-2 @error('image') is-invalid @enderror" style="font-size: 8px;">
                             <div class="text-center mt-2 mb-2">
                                 <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
                                 {{-- <img src="{{ asset($user->img_url) }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;"> --}}
@@ -28,9 +28,9 @@
                         </div>
 
                         <div class="row mb-2">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-form-label">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -42,9 +42,9 @@
                         </div>
 
                         <div class="row mb-2">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>
+                            <label for="email" class="col-form-label">{{ __('Email') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
 
                                 @error('email')
@@ -56,9 +56,9 @@
                         </div>
 
                         <div class="row mb-2">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-form-label">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -70,9 +70,9 @@
                         </div>
 
                         <div class="row mb-2">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
@@ -80,9 +80,9 @@
                         {{-- 追記 age height gender occupation message --}}
                         <div class="d-flex justify-content-between">
                             <div class="row mb-2">
-                                <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('Age') }}</label>
+                                <label for="age" class="col-6 col-form-label">{{ __('Age') }}</label>
 
-                                <div class="col-md-7">
+                                <div class="col-12">
                                     <input id="age" type="number" class="form-control text-center @error('age') is-invalid @enderror" name="age" value="{{ $user->age }}" required autocomplete="age">
 
                                     @error('age')
@@ -94,10 +94,10 @@
                             </div>
 
                             <div class="row mb-2">
-                                <label for="height" class="col-md-5 col-form-label text-md-end">{{ __('Height') }}</label>
+                                <label for="height" class="col-6 col-form-label">{{ __('Height') }}</label>
 
-                                <div class="col-md-7">
-                                    <input id="height" type="number" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ $user->height }}" required autocomplete="height">
+                                <div class="col-12">
+                                    <input id="height" type="number" class="form-control text-center @error('height') is-invalid @enderror" name="height" value="{{ $user->height }}" required autocomplete="height">
 
                                     @error('height')
                                         <span class="invalid-feedback" role="alert">
@@ -151,9 +151,9 @@
 
 
                         <div class="row mb-3">
-                            <label for="occupation" class="col-md-4 col-form-label text-md-end pr-0">{{ __('Occupation') }}</label>
+                            <label for="occupation" class="col-form-label pr-0">{{ __('Occupation') }}</label>
 
-                            <div class="col-md-8">
+                            <div class="col-12">
                                 <input id="occupation" type="text" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ ($user->occupation) }}" autocomplete="occupation">
 
                                 @error('occupation')
@@ -165,9 +165,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="message" class="col-md-4 col-form-label text-md-end">{{ __('Message') }}</label>
+                            <label for="message" class="col-form-label">{{ __('Message') }}</label>
 
-                            <div class="col-md-8">
+                            <div class="col-12">
                                 <textarea rows="6" id="message" type="text" class="form-control  @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ $user->message }}</textarea>
 
                                 @error('message')
