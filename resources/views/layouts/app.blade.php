@@ -41,8 +41,8 @@
                                         <i class="fa fa-cog" aria-hidden="true"></i>
                                     </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{route('users.edit', ['id' =>  $user->id]) }}">
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item active" href="{{route('users.edit', ['id' =>  $user->id]) }}">
                                             {{  $user->name }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
