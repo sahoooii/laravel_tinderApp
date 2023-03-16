@@ -179,8 +179,8 @@
                         </div>
 
                         <div class="p-2 mb-2 d-flex justify-content-around">
-                            <button type="button" onclick="location.href='{{ route('users.index') }}'" class="btn btn-outline-secondary focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
-							<button type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" onclick="location.href='{{ route('users.index') }}'" class="btn btn-outline-secondary btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
+							<button type="submit" class="btn btn-primary btn-lg">Update</button>
                         </div>
                     </form>
                 </div>

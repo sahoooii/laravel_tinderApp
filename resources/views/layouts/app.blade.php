@@ -101,7 +101,7 @@
         @endif --}}
         <x-flash-message status="session('status')" />
 
-        <div class="tbgwrap mt-2">
+        <div class="tbgwrap">
             @yield('content')
         </div>
     </div>
