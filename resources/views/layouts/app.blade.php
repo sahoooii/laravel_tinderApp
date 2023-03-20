@@ -30,7 +30,7 @@
 <div id="app">
     <div class="tbg">
         <div class="theader">
-            <nav class="navbar navbar-expand-md navbar-light bg-white">
+            <nav class="navbar navbar-expand navbar-light bg-white">
                 <div class="container">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
@@ -41,8 +41,8 @@
                                         <i class="fa fa-cog" aria-hidden="true"></i>
                                     </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{route('users.edit', ['id' =>  $user->id]) }}">
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item active" href="{{route('users.edit', ['id' =>  $user->id]) }}">
                                             {{  $user->name }}
                                         </a>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -101,7 +101,7 @@
         @endif --}}
         <x-flash-message status="session('status')" />
 
-        <div class="tbgwrap mt-3">
+        <div class="tbgwrap">
             @yield('content')
         </div>
     </div>

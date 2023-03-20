@@ -27,7 +27,7 @@
   <div class="tcontrols">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 mb-1">
+        <div class="col-6 mb-1">
           <form action="{{ route('swipes.store') }}" method="POST">
             @csrf
             {{--Nope ver.  --}}
@@ -39,7 +39,7 @@
           </form>
         </div>
 
-        <div class="col-md-6 mb-1">
+        <div class="col-6 mb-1">
           <form action="{{ route('swipes.store') }}" method="POST">
             @csrf
             {{--Like ver.  --}}
