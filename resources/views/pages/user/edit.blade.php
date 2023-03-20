@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 1300px;
+        height: 1480px;
     }
 </style>
 
@@ -31,7 +31,7 @@
                             <label for="name" class="col-form-label">{{ __('Name') }}</label>
 
                             <div class="col-12">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}"      autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                             <label for="email" class="col-form-label">{{ __('Email') }}</label>
 
                             <div class="col-12">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}"      autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                             <label for="password" class="col-form-label">{{ __('Password') }}</label>
 
                             <div class="col-12">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"      autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -73,36 +73,36 @@
                             <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
 
                             <div class="col-12">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"      autocomplete="new-password">
                             </div>
                         </div>
 
                         {{-- 追記 age height gender occupation message --}}
                         <div class="d-flex justify-content-between">
-                            <div class="row mb-2">
+                            <div class="row mb-3">
                                 <label for="age" class="col-6 col-form-label">{{ __('Age') }}</label>
 
                                 <div class="col-12">
-                                    <input id="age" type="number" class="form-control text-center @error('age') is-invalid @enderror" name="age" value="{{ $user->age }}" required autocomplete="age">
+                                    <input id="age" type="number" class="form-control text-center @error('age') is-invalid @enderror" name="age" value="{{ $user->age }}"      autocomplete="age">
 
                                     @error('age')
-                                        <span class="invalid-feedback" role="alert">
+                                        <div class="invalid-feedback col-12" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span>
+                                        </div>
                                     @enderror
                                 </div>
                             </div>
 
-                            <div class="row mb-2">
+                            <div class="row mb-3">
                                 <label for="height" class="col-6 col-form-label">{{ __('Height') }}</label>
 
                                 <div class="col-12">
-                                    <input id="height" type="number" class="form-control text-center @error('height') is-invalid @enderror" name="height" value="{{ $user->height }}" required autocomplete="height">
+                                    <input id="height" type="number" class="form-control text-center @error('height') is-invalid @enderror" name="height" value="{{ $user->height }}"      autocomplete="height">
 
                                     @error('height')
-                                        <span class="invalid-feedback" role="alert">
+                                        <div class="invalid-feedback col-12" role="alert">
                                             <strong>{{ $message }}</strong>
-                                        </span>
+                                        </div>
                                     @enderror
                                 </div>
                             </div>
@@ -110,9 +110,9 @@
 
                         <div class="form-check form-check-inline d-flex justify-content-around mb-3 mt-2">
                             <label for="male" class="form-check-label">{{ __('Male') }}</label>
-                            <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif required autocomplete="gender">
+                            <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif      autocomplete="gender">
                             <label for="female" class="form-check-label">{{ __('Female') }}</label>
-                            <input id="female" type="radio" class="form-check-input  @error('gender') is-invalid @enderror" name="gender" value="1"   @if ( $user->gender == '1') { checked } @endif required autocomplete="gender">
+                            <input id="female" type="radio" class="form-check-input  @error('gender') is-invalid @enderror" name="gender" value="1"   @if ( $user->gender == '1') { checked } @endif      autocomplete="gender">
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
