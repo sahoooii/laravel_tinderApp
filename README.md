@@ -4,7 +4,7 @@ laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logoloc
 
 # laravel-tinderApp
 
-* Laravel ver. 8.83.16 × Bootstrap ^5.1.3
+Laravel ver. 8.83.16 × Bootstrap ^5.1.3
 
 ### Describe in English
 
