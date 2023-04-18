@@ -20,7 +20,7 @@ Tinderのようなマッチングアプリ。Laravelを使って作った初め�
 ## src
 
 * [Images](https://pixabay.com/ja/)
-* [Fonts](https://fontawesome.com/)
+* [Icons](https://fontawesome.com/)
 
 
 ## devDependencies
