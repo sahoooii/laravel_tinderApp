@@ -8,13 +8,10 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Storage;
 use App\Services\ImageService;
 use App\Services\UserRegisterRulesService;
-use InterventionImage;
 
 class RegisterController extends Controller
 {
