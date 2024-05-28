@@ -20548,16 +20548,29 @@ readers do not read off random characters that represent icons */
 }
 
 .tbg {
-  height: 780px;
-  width: 400px;
+  /* height: 800px; */
+  width: 100%;
   background-color: #fff;
-  margin: 30px auto;
-  border: 1px solid #c0c0c0;
+  margin: 0px auto;
+  /* border: 1px solid #c0c0c0; */
 }
 
-.tbgwrap {
+@media (min-width: 768px) {
+  .tbg {
+      margin: 100px auto;
+      width: 400px;
+      border: 1px solid #c0c0c0;
+  }
+
+  .tbgwrap {
   padding: 8px;
 }
+
+}
+
+/* .tbgwrap {
+  padding: 8px;
+} */
 
 .theader {
   height: 65px;
