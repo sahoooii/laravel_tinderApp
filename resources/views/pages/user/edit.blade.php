@@ -2,12 +2,12 @@
 
 @section('content')
 <style>
-    .tbg {
-        height: 1480px;
-    }
+  .tbg {
+    height: auto !important;
+  }
 </style>
 
-<div class="container">
+<div class="container mt-4 mb-5">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
@@ -180,7 +180,7 @@
 
                         <div class="p-2 mb-2 d-flex justify-content-around">
                             <button type="button" onclick="location.href='{{ route('users.index') }}'" class="btn btn-outline-secondary btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
-							<button type="submit" class="btn btn-primary btn-lg">Update</button>
+                            <button type="submit" class="btn btn-primary btn-lg">Update</button>
                         </div>
                     </form>
                 </div>
@@ -189,8 +189,8 @@
             <form method="POST" action="{{ route('users.destroy', ['id' =>  $user->id]) }}" id="delete_{{ $user->id }}">
                 @csrf
 
-                <div class="d-grid gap-2 mt-2">
-                    <button type="button" data-id="{{ $user->id }}" onclick="deleteAccount(this)" class="btn btn-outline-light btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Delete Account</button>
+                <div class="d-grid mt-4">
+                    <button type="button" data-id="{{ $user->id }}" onclick="deleteAccount(this)" class="btn  btn-lg btn-outline-dark focus:outline-none  rounded text-lg">Delete Account</button>
                     {{-- <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="btn btn-outline-light btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Delete Account</a> --}}
                 </div>
             </form>
