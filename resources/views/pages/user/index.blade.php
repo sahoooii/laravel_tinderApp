@@ -2,6 +2,11 @@
 
 @section('content')
 <style>
+  /* .tbg {
+    margin-bottom: 100px !important;
+
+  } */
+
     .card-img-overlay {
       padding: 0;
       top: calc(88% - 0.5rem);

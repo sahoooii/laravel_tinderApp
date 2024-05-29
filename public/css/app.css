@@ -20547,20 +20547,20 @@ readers do not read off random characters that represent icons */
   height: auto;
   width: 100%;
   background-color: #fff;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .tbg {
       height: 850px;
-      margin: 100px auto;
+      margin: 70px auto;
       width: 400px;
       border: 1px solid #c0c0c0;
   }
 
   .tbgwrap {
-  padding: 8px;
-}
+    padding: 8px;
+  }
 
 }
 
