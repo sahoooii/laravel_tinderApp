@@ -2,13 +2,13 @@
 
 @section('content')
 <style>
-      .card-img-overlay {
-        padding: 0;
-        top: calc(80% - 0.5rem);
-        font-weight: bold;
-    }
-
+    .card-img-overlay {
+      padding: 0;
+      top: calc(88% - 0.5rem);
+      font-weight: bold;
+  }
 </style>
+
 <div class="p-user-index">
 
   @if (is_null($notSwipeUser))
@@ -27,7 +27,7 @@
   <div class="tcontrols">
     <div class="container">
       <div class="row">
-        <div class="col-6 mb-1">
+        <div class="col-6">
           <form action="{{ route('swipes.store') }}" method="POST">
             @csrf
             {{--Nope ver.  --}}
@@ -39,7 +39,7 @@
           </form>
         </div>
 
-        <div class="col-6 mb-1">
+        <div class="col-6">
           <form action="{{ route('swipes.store') }}" method="POST">
             @csrf
             {{--Like ver.  --}}

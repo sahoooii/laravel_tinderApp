@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
-			<div class="card mb-4">
+			<div class="card mb-4 mt-3">
 					<div class="card-header">Your Match</div>
 			</div>
 
