@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
+<style>
+  .tbg {
+    height: auto !important;
+  }
+</style>
+
 <div class="container pt-3 pb-5">
     <div class="row justify-content-center">
         <div class="col-12">

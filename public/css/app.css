@@ -4340,6 +4340,11 @@ textarea.form-control-lg {
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
+
+/* @media (min-width: 768px) {
+
+} */
+
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
@@ -4369,16 +4374,6 @@ textarea.form-control-lg {
   margin-left: -0.5rem;
 }
 
-.card-img-overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  border-radius: calc(0.25rem - 1px);
-}
-
 .card-img,
 .card-img-top,
 .card-img-bottom {
@@ -4400,6 +4395,7 @@ textarea.form-control-lg {
 .card-group > .card {
   margin-bottom: 0.75rem;
 }
+
 @media (min-width: 576px) {
   .card-group {
     display: flex;
@@ -20548,15 +20544,15 @@ readers do not read off random characters that represent icons */
 }
 
 .tbg {
-  /* height: 800px; */
+  height: auto;
   width: 100%;
   background-color: #fff;
   margin: 0px auto;
-  /* border: 1px solid #c0c0c0; */
 }
 
 @media (min-width: 768px) {
   .tbg {
+      height: 850px;
       margin: 100px auto;
       width: 400px;
       border: 1px solid #c0c0c0;
@@ -20605,11 +20601,12 @@ readers do not read off random characters that represent icons */
 
 .tphoto {
   width: 350px;
-  height: 350px;
+  height: 500px;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
-  top: 15px;
+  /* top: 15px; */
+  margin-top: 15px;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -o-border-radius: 10px;
@@ -20619,7 +20616,14 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
   box-shadow: 2px 2px 2px #c0c0c0;
   -o-object-fit: cover;
-     object-fit: cover;
+  /* object-fit: cover; */
+}
+
+.tphoto img {
+  width: 350px;
+  height: 500px;
+  object-fit: cover;
+
 }
 
 .tname {
@@ -20655,7 +20659,7 @@ readers do not read off random characters that represent icons */
   -ms-border-radius: 50%;
   position: relative;
   display: inline-block;
-  top: 50px;
+  top: 20px;
   left: 25px;
   border: 10px solid #f0f0f0;
 }
@@ -20696,7 +20700,7 @@ readers do not read off random characters that represent icons */
   -ms-border-radius: 50%;
   position: relative;
   display: inline-block;
-  top: 48px;
+  top: 20px;
   left: 0px;
   border: 10px solid #f0f0f0;
 }

@@ -28,7 +28,7 @@
 </head>
 <body>
 <div id="app">
-    <div class="tbg h-auto">
+    <div class="tbg">
         <div class="theader">
             <nav class="navbar navbar-expand navbar-light bg-white">
                 <div class="container">
