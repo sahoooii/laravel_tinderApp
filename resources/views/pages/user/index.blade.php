@@ -2,11 +2,6 @@
 
 @section('content')
 <style>
-  /* .tbg {
-    margin-bottom: 100px !important;
-
-  } */
-
     .card-img-overlay {
       padding: 0;
       top: calc(88% - 0.5rem);
@@ -15,7 +10,6 @@
 </style>
 
 <div class="p-user-index">
-
   @if (is_null($notSwipeUser))
   <p class="text-center">There's no user around you<i class="fa-solid fa-magnifying-glass ml-2" style="color: blue;"></i></p>
   @endif
