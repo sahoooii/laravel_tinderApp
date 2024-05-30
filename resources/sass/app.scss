@@ -1,27 +1,42 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-@import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import '@fortawesome/fontawesome-free/scss/brands';
-@import '@fortawesome/fontawesome-free/scss/solid';
-@import '@fortawesome/fontawesome-free/scss/regular';
-
-
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/brands";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/regular";
+img-
 .tbg {
-    height: 720px;
-    width: 400px;
+    height: auto;
+    width: 100%;
     background-color: #fff;
     margin: 0 auto;
-    border: 1px solid #c0c0c0;
 }
-.tbgwrap { padding: 10px; }
-.theader { height: 65px; border-bottom: 1px solid #c0c0c0; }
+
+@media (min-width: 768px) {
+    .tbg {
+        height: 850px;
+        margin: 70px auto;
+        width: 400px;
+        border: 1px solid #c0c0c0;
+    }
+
+    .tbgwrap {
+        padding: 8px;
+    }
+}
+
+.theader {
+    height: 65px;
+    border-bottom: 1px solid #c0c0c0;
+}
+
 .theader i.fa-comments {
     color: #c0c0c0;
     font-size: 24px;
@@ -29,6 +44,7 @@
     float: right;
     position: relative;
 }
+
 .theader i.fa-cog {
     color: #c0c0c0;
     font-size: 24px;
@@ -36,15 +52,25 @@
     float: left;
     position: relative;
 }
-.tlogo { width: 100px; margin: 0 auto; padding: 10px; }
-.tlogo img { width: 100px; }
+
+.tlogo {
+    width: 100px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.tlogo img {
+    width: 100px;
+}
+
 .tphoto {
     width: 350px;
-    height: 350px;
+    height: 500px;
     overflow: hidden;
     margin: 0 auto;
     position: relative;
-    top: 15px;
+    /* top: 15px; */
+    margin-top: 15px;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -o-border-radius: 10px;
@@ -55,23 +81,37 @@
     box-shadow: 2px 2px 2px #c0c0c0;
     object-fit: cover;
 }
-.tphoto img {}
+
+.tphoto img {
+    width: 350px;
+    height: 500px;
+    object-fit: cover;
+}
+
 .tname {
     padding: 15px;
     font-size: 20px;
-    font-family: 'Helvetica', sans-serif;
+    font-family: "Helvetica", sans-serif;
     float: left;
 }
-.tname .age { font-weight: 200; }
-.tinfo { font-family: 'Helvetica', sans-serif; }
-.tinfo .fa-users, .tinfo .fa-book {
+
+.tname .age {
+    font-weight: 200;
+}
+
+.tinfo {
+    font-family: "Helvetica", sans-serif;
+}
+
+.tinfo .fa-users,
+.tinfo .fa-book {
     color: #c0c0c0;
     float: right;
     position: relative;
     font-size: 24px;
     padding: 12px;
 }
-.tcontrols {}
+
 .tno {
     background-color: #fff;
     height: 120px;
@@ -82,14 +122,16 @@
     -ms-border-radius: 50%;
     position: relative;
     display: inline-block;
-    top: 50px;
+    top: 20px;
     left: 25px;
     border: 10px solid #f0f0f0;
 }
+
 .tno i {
     color: #ff695b;
     font-size: 80px;
 }
+
 .ti {
     background-color: #fff;
     height: 50px;
@@ -104,11 +146,13 @@
     top: 30px;
     border: 10px solid #f0f0f0;
 }
+
 .ti .fa-info {
     font-size: 23px;
     padding: 15px 20px;
     color: #398beb;
 }
+
 .tyes {
     background-color: #fff;
     height: 120px;
@@ -119,14 +163,16 @@
     -ms-border-radius: 50%;
     position: relative;
     display: inline-block;
-    top: 48px;
+    top: 20px;
     left: 0px;
     border: 10px solid #f0f0f0;
 }
+
 .tyes i {
     color: #5de19c;
     font-size: 60px;
 }
+
 .credit {
     width: 400px;
     height: auto;
@@ -136,12 +182,13 @@
     background-color: #f0f0f0;
     padding: 2px 0px;
 }
+
 .credit a {
     font-size: 7px;
     letter-spacing: 5px;
     color: #c0c0c0;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: 'Helvetica', sans-serif;
+    font-family: "Helvetica", sans-serif;
     font-style: italic;
 }
