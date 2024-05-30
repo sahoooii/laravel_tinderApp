@@ -21,7 +21,7 @@
                         <div class="row mb-1">
                             <input type="file" name="image" accept="image/jpeg, image/jpg, image/png" class="col-8 col-form-label mx-auto mb-2 @error('image') is-invalid @enderror" style="font-size: 8px;">
                             <div class="text-center mt-2 mb-2">
-                                <img src="{{ $user->img_url }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;">
+                                <img src="{{ $user->img_url }}" alt="img" class="rounded-circle object-fit-cover" style="height: 120px; width: 120px; object-fit:cover;">
                                 {{-- <img src="{{ asset($user->img_url) }}" alt="img" class="rounded-circle" style="height: 120px; width: 120px; object-fit:cover;"> --}}
                             </div>
                             <x-auth-validation-errors class="invalid-feedback" role="alert" :errors="$errors" />
