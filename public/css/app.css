@@ -2743,7 +2743,7 @@ textarea.form-control-lg {
   border-color: #dc3545;
 }
 .was-validated .form-check-input:invalid:checked, .form-check-input.is-invalid:checked {
-  /* background-color: #dc3545; */
+  background-color: #dc3545;
 }
 .was-validated .form-check-input:invalid:focus, .form-check-input.is-invalid:focus {
   box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
@@ -4314,7 +4314,7 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 1rem;
 }
 
 .card-title {
@@ -4340,11 +4340,6 @@ textarea.form-control-lg {
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
-
-/* @media (min-width: 768px) {
-
-} */
-
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
@@ -4374,6 +4369,16 @@ textarea.form-control-lg {
   margin-left: -0.5rem;
 }
 
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  border-radius: calc(0.25rem - 1px);
+}
+
 .card-img,
 .card-img-top,
 .card-img-bottom {
@@ -4395,7 +4400,6 @@ textarea.form-control-lg {
 .card-group > .card {
   margin-bottom: 0.75rem;
 }
-
 @media (min-width: 576px) {
   .card-group {
     display: flex;
@@ -20543,31 +20547,24 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
-.tbg {
+img- .tbg {
   height: auto;
   width: 100%;
   background-color: #fff;
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .tbg {
-      height: 850px;
-      margin: 100px auto;
-      width: 400px;
-      border: 1px solid #c0c0c0;
+    height: 850px;
+    margin: 70px auto;
+    width: 400px;
+    border: 1px solid #c0c0c0;
   }
-
   .tbgwrap {
-  padding: 8px;
+    padding: 8px;
+  }
 }
-
-}
-
-/* .tbgwrap {
-  padding: 8px;
-} */
-
 .theader {
   height: 65px;
   border-bottom: 1px solid #c0c0c0;
@@ -20616,14 +20613,14 @@ readers do not read off random characters that represent icons */
   background-color: #fff;
   box-shadow: 2px 2px 2px #c0c0c0;
   -o-object-fit: cover;
-  /* object-fit: cover; */
+     object-fit: cover;
 }
 
 .tphoto img {
   width: 350px;
   height: 500px;
-  object-fit: cover;
-
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .tname {
@@ -20641,7 +20638,8 @@ readers do not read off random characters that represent icons */
   font-family: "Helvetica", sans-serif;
 }
 
-.tinfo .fa-users, .tinfo .fa-book {
+.tinfo .fa-users,
+.tinfo .fa-book {
   color: #c0c0c0;
   float: right;
   position: relative;

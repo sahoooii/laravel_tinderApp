@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .tbg {
-        height: 880px;
+        height: 900px;
     }
 
     .card-img-overlay {
@@ -16,8 +16,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <img src="{{ $matchedUserInfo->img_url }}" alt="img" class="img-thumbnail img-rounded" style="height:400px; object-fit:cover;">
+            <div class="card mt-2">
+                <img src="{{ $matchedUserInfo->img_url }}" alt="img" class="img-thumbnail img-rounded" style="height:450px; object-fit:cover;">
                 <div class="card-img-overlay d-flex flex-row">
                     <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->name }}</h2>
                     <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->age }}</h2>
