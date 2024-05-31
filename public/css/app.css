@@ -20565,6 +20565,12 @@ img- .tbg {
     padding: 8px;
   }
 }
+.card-img-overlay {
+  padding: 0 !important;
+  top: calc(88% - 0.5rem) !important;
+  font-weight: bold !important;
+}
+
 .theader {
   height: 65px;
   border-bottom: 1px solid #c0c0c0;
@@ -20602,7 +20608,6 @@ img- .tbg {
   overflow: hidden;
   margin: 0 auto;
   position: relative;
-  /* top: 15px; */
   margin-top: 15px;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -20726,4 +20731,22 @@ img- .tbg {
   text-transform: uppercase;
   font-family: "Helvetica", sans-serif;
   font-style: italic;
+}
+
+.img_icon {
+  height: 70px;
+  width: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 55% 18%;
+     object-position: 55% 18%;
+}
+
+.my_icon {
+  height: 120px;
+  width: 120px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 55% 18%;
+     object-position: 55% 18%;
 }

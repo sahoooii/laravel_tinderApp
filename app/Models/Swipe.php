@@ -17,6 +17,7 @@ class Swipe extends Model
         'is_like'
     ];
 
+		// User情報を取得するためにリレーションを貼る
     public function toUser()
     {
         return $this->belongsTo(User::class, 'to_user_id', 'id');

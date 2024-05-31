@@ -11,8 +11,7 @@
 @import "@fortawesome/fontawesome-free/scss/brands";
 @import "@fortawesome/fontawesome-free/scss/solid";
 @import "@fortawesome/fontawesome-free/scss/regular";
-img-
-.tbg {
+img- .tbg {
     height: auto;
     width: 100%;
     background-color: #fff;
@@ -30,6 +29,12 @@ img-
     .tbgwrap {
         padding: 8px;
     }
+}
+
+.card-img-overlay {
+    padding: 0 !important;
+    top: calc(88% - 0.5rem) !important;
+    font-weight: bold !important;
 }
 
 .theader {
@@ -69,7 +74,6 @@ img-
     overflow: hidden;
     margin: 0 auto;
     position: relative;
-    /* top: 15px; */
     margin-top: 15px;
     border-radius: 10px;
     -moz-border-radius: 10px;
@@ -191,4 +195,23 @@ img-
     text-transform: uppercase;
     font-family: "Helvetica", sans-serif;
     font-style: italic;
+}
+
+.img_icon {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    object-position: 55% 18%;
+}
+
+// .thumbnail {
+//     height: 500px;
+//     object-fit: cover;
+// }
+
+.my_icon {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    object-position: 55% 18%;
 }
