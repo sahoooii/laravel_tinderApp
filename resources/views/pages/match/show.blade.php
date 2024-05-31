@@ -3,24 +3,21 @@
 @section('content')
 <style>
     .tbg {
-        height: 900px;
-    }
-
-    .card-img-overlay {
-        padding: 0;
-        top: calc(50% - 0.5rem);
-        font-weight: bold;
+        height: auto;
     }
 </style>
 
-<div class="container">
+<div class="container mb-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card mt-2">
-                <img src="{{ $matchedUserInfo->img_url }}" alt="img" class="img-thumbnail img-rounded" style="height:450px; object-fit:cover;">
-                <div class="card-img-overlay d-flex flex-row">
-                    <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->name }}</h2>
-                    <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->age }}</h2>
+            {{-- <div class="card mt-2"> --}}
+            <div>
+                <div class="tphoto">
+                  <img src="{{ $matchedUserInfo->img_url }}" title="tphoto" alt="Tinder Photo">
+                  <div class="card-img-overlay d-flex flex-row">
+                      <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->name }}</h2>
+                      <h2 class="text-white text-left pl-4">{{ $matchedUserInfo->age }}</h2>
+                  </div>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">About Me</h5>

@@ -18,7 +18,8 @@ class CreateSwipesTable extends Migration
             $table->unsignedBigInteger('from_user_id');
             $table->unsignedBigInteger('to_user_id');
             $table->boolean('is_like');
-            $table->foreign('from_user_id')->references('id')->on('users')->onDelete('cascade');//users tableのidを参照
+						//users tableのidを参照
+            $table->foreign('from_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('to_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
