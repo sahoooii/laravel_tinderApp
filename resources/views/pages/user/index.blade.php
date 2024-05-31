@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .card-img-overlay {
-      padding: 0;
-      top: calc(88% - 0.5rem);
-      font-weight: bold;
-  }
-</style>
 
 <div class="p-user-index">
   @if (is_null($notSwipeUser))

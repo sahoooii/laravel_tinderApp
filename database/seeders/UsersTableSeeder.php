@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name' => 'Stacy',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'stacy@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/whiteWoman.jpg',
                 'age' => 28,
@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Julia',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'julia@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/julia.jpg',
                 'age' => 26,
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Lance',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'lance@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/lance.jpg',
                 'age' => 33,
@@ -60,7 +60,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Cathy',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'cathy@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/cathy.jpg',
                 'age' => 28,
@@ -73,7 +73,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Nick',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'nick@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/asianGuy.jpg',
                 'age' => 26,
@@ -86,7 +86,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Harry',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'harry@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/modelGuy.jpg',
                 'age' => 24,
@@ -99,7 +99,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Ryan Sakata',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'rayan@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/asianGuy2.jpg',
                 'age' => 22,
@@ -112,7 +112,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'April',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'april@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/asianWoman.jpg',
                 'age' => 21,
@@ -125,7 +125,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Taylor',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'taylor@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/whiteGirl.jpg',
                 'age' => 18,
@@ -138,7 +138,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Josh',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'josh@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/hapaBoy.jpg',
                 'age' => 22,
@@ -151,7 +151,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Emily',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'emily@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/influencerWoman.jpg',
                 'age' => 28,
@@ -164,7 +164,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Adam',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'adam@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/harvardBoy.jpg',
                 'age' => 24,
@@ -177,7 +177,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Erica',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'erica@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/jpGirl.jpg',
                 'age' => 21,
@@ -190,7 +190,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Isabelle',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'isabelle@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/latinoWoman.jpg',
                 'age' => 23,
@@ -203,7 +203,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Mike',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'mike@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/nurdGuy.jpg',
                 'age' => 26,
@@ -216,7 +216,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Olivia',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'olivia@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/tennessee.jpg',
                 'age' => 28,
@@ -229,7 +229,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Austin',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'austin@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/englishGuy.jpg',
                 'age' => 31,
@@ -242,7 +242,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Ezra',
-                'email' => Str::random(10).'@gmail.com',
+                'email' => 'ezra@gmail.com',
                 'password' => Hash::make('password'),
                 'img_url' => '/storage/images/gGuy.jpg',
                 'age' => 34,
