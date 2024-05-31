@@ -9,13 +9,14 @@ class SearchGenderService
 {
     public static function searchGender($search_gender, $user_gender)
     {
-        //loginしているuser情報
+        //Loginしているuser情報
         $user = User::find(\Auth::user()->id);
-        //すでにswipeしたuserを省いて、idsを取得
+				// LoginしているuserがswipeしたuserIdのみを配列で取得
         $swipedUserIds = Swipe::where('from_user_id', $user->id)->get()->pluck('to_user_id');
 
-        //swipeしていないuserを1つ取得,search_genderで切り分け man=0 woman=1 both=2
+        //swipeしていないuserを1つ取得,search_genderで切り分け
         //look for both(2) $user_gender=man
+				// man=0 woman=1 both=2
         if ($search_gender === 2 && $user_gender === 0) {
             $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->whereIn('gender', [0,1])->whereIn('search_gender', [0, 2])->first();
         }
@@ -24,14 +25,14 @@ class SearchGenderService
             $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->whereIn('gender', [0,1])->whereIn('search_gender', [1, 2])->first();
         }
 
-        //look for man(0) man to man, man to woman
+        //look for man(0) man to man, woman to man
         if ($search_gender === 0 && $user_gender === 0) {
             $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [0,2])->first();
         } elseif ($search_gender === 0 && $user_gender === 1) {
             $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [1,2])->first();
         }
-		
-        //look for woman(1) woman to woman, woman to man
+
+        //look for woman(1) woman to woman, man to woman
         if ($search_gender === 1 && $user_gender === 1) {
             $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 1)->whereIn('search_gender', [1,2])->first();
         } elseif ($search_gender === 1 && $user_gender === 0) {
