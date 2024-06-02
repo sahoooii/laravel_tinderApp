@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Swipe;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use App\Services\ImageService;
 use App\Services\SearchGenderService;
 use App\Http\Requests\UserRequest;
-use InterventionImage;
 
 class UserController extends Controller
 {

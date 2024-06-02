@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">Edit Your Profile</div>
+                <div class="card-header">{{ __('Edit Your Profile') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('users.update', ['id' => $user->id]) }}" enctype="multipart/form-data">
@@ -28,10 +28,8 @@
 
                         <div class="row mb-2">
                             <label for="name" class="col-form-label">{{ __('Name') }}</label>
-
                             <div class="col-12">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}"      autocomplete="name" autofocus>
-
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" autocomplete="name" autofocus>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -44,8 +42,7 @@
                             <label for="email" class="col-form-label">{{ __('Email') }}</label>
 
                             <div class="col-12">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}"      autocomplete="email">
-
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" autocomplete="email">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -56,10 +53,8 @@
 
                         <div class="row mb-2">
                             <label for="password" class="col-form-label">{{ __('Password') }}</label>
-
                             <div class="col-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"      autocomplete="new-password">
-
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,54 +65,65 @@
 
                         <div class="row mb-2">
                             <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
-
                             <div class="col-12">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation"      autocomplete="new-password">
                             </div>
                         </div>
 
-                        {{-- 追記 age height gender occupation message --}}
-                        <div class="d-flex justify-content-between">
-                            <div class="row mb-3">
-                                <label for="age" class="col-6 col-form-label">{{ __('Age') }}</label>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <div class="row mr-1">
+                                    <label for="age" class="col-form-label fs-6">{{ __('Age') }}</label>
+                                    <div>
+                                        <input id="age" type="number" class="form-control text-center @error('age') is-invalid @enderror" name="age" value="{{ $user->age }}" autocomplete="age">
+                                    </div>
+                                </div>
 
-                                <div class="col-12">
-                                    <input id="age" type="number" class="form-control text-center @error('age') is-invalid @enderror" name="age" value="{{ $user->age }}"      autocomplete="age">
-
-                                    @error('age')
-                                        <div class="invalid-feedback col-12" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror
+                                <div class="row">
+                                    <label for="height" class="col-form-label fs-6">{{ __('Height') }}</label>
+                                    <div>
+                                        <input id="height" type="number" class="form-control text-center @error('height') is-invalid @enderror" name="height" value="{{ $user->height }}" autocomplete="height">
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="height" class="col-6 col-form-label">{{ __('Height') }}</label>
+                            <div>
+                              @error('age')
+                                  <div class="invalid-feedback d-inline" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </div>
+                              @enderror
+                            </div>
 
-                                <div class="col-12">
-                                    <input id="height" type="number" class="form-control text-center @error('height') is-invalid @enderror" name="height" value="{{ $user->height }}"      autocomplete="height">
-
-                                    @error('height')
-                                        <div class="invalid-feedback col-12" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </div>
-                                    @enderror
-                                </div>
+                            <div>
+                              @error('height')
+                                  <div class="invalid-feedback d-inline" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </div>
+                              @enderror
                             </div>
                         </div>
 
-                        <div class="form-check form-check-inline d-flex justify-content-around mb-3 mt-2">
-                            <label for="male" class="form-check-label">{{ __('Male') }}</label>
-                            <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif      autocomplete="gender">
-                            <label for="female" class="form-check-label">{{ __('Female') }}</label>
-                            <input id="female" type="radio" class="form-check-input  @error('gender') is-invalid @enderror" name="gender" value="1"   @if ( $user->gender == '1') { checked } @endif      autocomplete="gender">
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="mb-3 mt-2">
+                          <div class="d-flex justify-content-around">
+                            <div class="form-check form-check-inline is-invalid">
+                                <label for="male" class="form-check-label mr-2">{{ __('Male') }}</label>
+                                <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif  autocomplete="gender">
+                            </div>
+
+                            <div class="form-check form-check-inline is-invalid">
+                                <label for="female" class="form-check-label mr-2">{{ __('Female') }}</label>
+                                <input id="female" type="radio" class="form-check-input  @error('gender') is-invalid @enderror" name="gender" value="1" @if ( $user->gender == '1') { checked } @endif  autocomplete="gender">
+                            </div>
+                          </div>
+
+                          @error('gender')
+                            <div class="invalid-feedback d-inline" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                          @enderror
                         </div>
+
 
                         <div class="form-check form-check-inline d-flex mb-3">
                             <select class="form-select @error('search_gender') is-invalid @enderror" aria-label="Default select example" name="search_gender" id="search_gender">
@@ -147,14 +153,10 @@
                             @enderror
                         </div>
 
-
-
                         <div class="row mb-3">
                             <label for="occupation" class="col-form-label pr-0">{{ __('Occupation') }}</label>
-
                             <div class="col-12">
                                 <input id="occupation" type="text" class="form-control @error('occupation') is-invalid @enderror" name="occupation" value="{{ ($user->occupation) }}" autocomplete="occupation">
-
                                 @error('occupation')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -165,10 +167,8 @@
 
                         <div class="row mb-3">
                             <label for="message" class="col-form-label">{{ __('Message') }}</label>
-
                             <div class="col-12">
                                 <textarea rows="6" id="message" type="text" class="form-control  @error('Message') is-invalid @enderror" name="message" placeholder="Tell us yourself." autocomplete="message">{{ $user->message }}</textarea>
-
                                 @error('message')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -190,7 +190,6 @@
 
                 <div class="d-grid mt-4">
                     <button type="button" data-id="{{ $user->id }}" onclick="deleteAccount(this)" class="btn  btn-lg btn-outline-dark focus:outline-none  rounded text-lg">Delete Account</button>
-                    {{-- <a href="#" data-id="{{ $user->id }}" onclick="deletePost(this)" class="btn btn-outline-light btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Delete Account</a> --}}
                 </div>
             </form>
         </div>
