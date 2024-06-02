@@ -111,6 +111,5 @@ class RegisterController extends Controller
             'occupation' => $data['occupation'],
             'message' => $data['message'],
         ]);
-
     }
 }
