@@ -60,4 +60,16 @@ class MatchController extends Controller
 
         return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));
     }
+
+    public function destroy($id)
+    {
+        Swipe::where('to_user_id', $id)->delete();
+
+        return redirect()
+        ->route('matches.index')
+        ->with(['flash_message' => 'Remove from your matching list',
+            'status' => 'alert'
+        ]);
+    }
+
 }

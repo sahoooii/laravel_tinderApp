@@ -12,7 +12,6 @@ class MatchedUserIdService
 		$user = User::find(\Auth::user()->id);
 
 		//自分とマッチした人のIDだけ取得
-
 		//自分にlikeしてくれたuser ids
 		$likedUserIds = Swipe::where('to_user_id', $user->id)
 					->where('is_like', true)
