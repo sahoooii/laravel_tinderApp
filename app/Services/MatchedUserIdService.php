@@ -30,7 +30,7 @@ class MatchedUserIdService
 			$matchedUserId = in_array($user_id, $matchedUserIds);
 		}
 
-		//1人もmatchしていないuserが直接showにaccessしないように
+		//matchしていないuserIDを直接打ってaccessできないように
 		if (isset($matchedUserId)) {
 			return $matchedUserId;
 		}
