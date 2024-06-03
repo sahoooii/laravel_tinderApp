@@ -31,10 +31,25 @@
                         </div>
                 </div>
             </div>
-            <div class="d-grid gap-2 mt-2">
-                <button type="button" onclick="location.href='{{ route('matches.index') }}'" class="btn btn-outline-secondary btn-lg focus:outline-none hover:bg-gray-400 rounded text-lg">Back</button>
-            </div>
+            {{-- Unmatch Button --}}
+            <form method="POST" action="{{ route('matches.destroy', ['id' =>  $matchedUserInfo->id]) }}" id="delete_{{ $matchedUserInfo->id }}">
+                @csrf
+
+                <div class="d-grid mt-4">
+                    <button type="button" data-id="{{ $matchedUserInfo->id }}" onclick="deleteAccount(this)" class="btn btn-lg btn-outline-danger focus:outline-none rounded text-lg">Unmatched</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+    'use strict';
+    function deleteAccount(e) {
+        if (confirm('Would you like to unmatch this user?')) {
+            document.getElementById('delete_' + e.dataset.id).submit();
+        }
+    }
+</script>
+
 @endsection

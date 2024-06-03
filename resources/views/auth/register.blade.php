@@ -104,11 +104,11 @@
                           <div class="d-flex justify-content-around">
                               <div class="form-check form-check-inline is-invalid">
                                   <label for="male" class="form-check-label mr-2">{{ __('Male') }}</label>
-                                  <input id="male" type="radio" class="form-check-input form-check-inline border border-dark @error('gender') is-invalid @enderror" name="gender" value="0" {{ old('gender') == '0' ? 'checked' : '' }}  autocomplete="gender">
+                                  <input id="male" type="radio" class="form-check-input form-check-inline border border-dark @error('gender') is-invalid @enderror" name="gender" value="0" {{ old('gender') == '0' ? 'checked' : '' }} autocomplete="gender">
                               </div>
                               <div class="form-check form-check-inline is-invalid">
                                   <label for="female" class="form-check-label mr-2">{{ __('Female') }}</label>
-                                  <input id="female" type="radio" class="form-check-input form-check-inline border border-dark @error('gender') is-invalid @enderror" name="gender" value="1"  {{ old('gender') == '1' ? 'checked' : '' }}  autocomplete="gender">
+                                  <input id="female" type="radio" class="form-check-input form-check-inline border border-dark @error('gender') is-invalid @enderror" name="gender" value="1"  {{ old('gender') == '1' ? 'checked' : '' }} autocomplete="gender">
                               </div>
                           </div>
                             @error('gender')
