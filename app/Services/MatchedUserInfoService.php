@@ -8,10 +8,10 @@ class MatchedUserInfoService
 	public static function userGender($gender)
 	{
 		if ($gender === 0) {
-            $gender = 'male';
+            $gender = 'Male';
         }
         if ($gender === 1) {
-            $gender = 'female';
+            $gender = 'Female';
         }
 		return $gender;
 	}
