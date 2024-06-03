@@ -172,7 +172,7 @@ class UsersTableSeeder extends Seeder
                 'search_gender' => 1,
                 'search_status' => 1,
                 'occupation' => 'Lawyer',
-                'message' => "Hi, Adam is here. I graduated from Harvard University and I'm working in Chicago as a lawyer. I have no time to find one one-night stand buddy, so I'm here!"
+                'message' => "Hi, Adam is here. I graduated from Harvard University. I'm working in Chicago as a lawyer. I have no time to find a one-night stand buddy, so I'm here!"
             ],
             [
                 'name' => 'Erica',
