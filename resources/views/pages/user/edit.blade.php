@@ -106,15 +106,15 @@
 
                         <div class="mb-3 mt-2">
                           <div class="d-flex justify-content-around">
-                            <div class="form-check form-check-inline is-invalid">
-                                <label for="male" class="form-check-label mr-2">{{ __('Male') }}</label>
-                                <input id="male" type="radio" class="form-check-input @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif  autocomplete="gender">
-                            </div>
+                              <div class="form-check form-check-inline is-invalid">
+                                  <label for="male" class="form-check-label mr-2">{{ __('Male') }}</label>
+                                  <input id="male" type="radio" class="form-check-input form-check-inline border border-dark @error('gender') is-invalid @enderror" name="gender" value="0" @if ( $user->gender == '0') { checked } @endif autocomplete="gender">
+                              </div>
 
-                            <div class="form-check form-check-inline is-invalid">
-                                <label for="female" class="form-check-label mr-2">{{ __('Female') }}</label>
-                                <input id="female" type="radio" class="form-check-input  @error('gender') is-invalid @enderror" name="gender" value="1" @if ( $user->gender == '1') { checked } @endif  autocomplete="gender">
-                            </div>
+                              <div class="form-check form-check-inline is-invalid">
+                                  <label for="female" class="form-check-label mr-2">{{ __('Female') }}</label>
+                                  <input id="female" type="radio" class="form-check-input form-check-inline border border-dark @error('gender') is-invalid @enderror" name="gender" value="1" @if ( $user->gender == '1') { checked } @endif autocomplete="gender">
+                              </div>
                           </div>
 
                           @error('gender')
@@ -124,33 +124,40 @@
                           @enderror
                         </div>
 
-
-                        <div class="form-check form-check-inline d-flex mb-3">
-                            <select class="form-select @error('search_gender') is-invalid @enderror" aria-label="Default select example" name="search_gender" id="search_gender">
-                                <option value="">What you want to date?</option>
-                                @foreach (\App\Models\User::$search_genders as $key => $gender)
-                                    <option value="{{ $key }}" @if ($user->search_gender === $key) selected @endif>{{ $gender }}</option>
-                                @endforeach
-                            </select>
-                            @error('search_gender')
-                                <span class="invalid-feedback ml-3" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="mb-3">
+                            <div class="form-check form-check-inline d-flex">
+                                <select class="form-select @error('search_gender') is-invalid @enderror" aria-label="Default select example" name="search_gender" id="search_gender">
+                                    <option value="">What you want to date?</option>
+                                    @foreach (\App\Models\User::$search_genders as $key => $gender)
+                                        <option value="{{ $key }}" @if ($user->search_gender === $key) selected @endif>{{ $gender }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                              @error('search_gender')
+                                  <span class="invalid-feedback d-inline" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                            </div>
                         </div>
 
-                        <div class="form-check form-check-inline d-flex mb-3">
-                            <select class="form-select @error('search_status') is-invalid @enderror" aria-label="Default select example" name="search_status" id="search_status">
-                                <option value="">What you looking for?</option>
-                                @foreach (\App\Models\User::$search_statuses as $key => $status)
-                                    <option value="{{ $key }}" @if ($user->search_status === $key) selected @endif>{{ $status }}</option>
-                                @endforeach
-                            </select>
-                            @error('search_status')
-                                <span class="invalid-feedback ml-3" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <div class="mb-3">
+                            <div class="form-check form-check-inline d-flex">
+                                <select class="form-select @error('search_status') is-invalid @enderror" aria-label="Default select example" name="search_status" id="search_status">
+                                    <option value="">What you looking for?</option>
+                                    @foreach (\App\Models\User::$search_statuses as $key => $status)
+                                        <option value="{{ $key }}" @if ($user->search_status === $key) selected @endif>{{ $status }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                              @error('search_status')
+                                  <span class="invalid-feedback d-inline" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                            </div>
                         </div>
 
                         <div class="row mb-3">
