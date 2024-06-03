@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:4','max:50'],
+            'name' => ['required', 'string', 'min:2','max:30'],
             'email' => ['required', 'email', function ($name, $item, $fail) {
                 // もし既に使用されているemailなら弾く
                 if (count(User::where([
