@@ -44,11 +44,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-     // logoutファンクションを作成
+     // logout functionを作成
     public function logout(Request $request)
     {
         $this->performLogout($request);
-        
+
         return redirect('/login');
     }
 }

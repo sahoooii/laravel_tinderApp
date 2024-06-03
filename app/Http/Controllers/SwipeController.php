@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Swipe;
-use App\Models\User;
 
 class SwipeController extends Controller
 {

@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'matches'], function () {
         Route::get('', [MatchController::class, 'index'])->name('matches.index');
         Route::get('show/{id}', [MatchController::class, 'show'])->name('matches.show');
+        Route::post('destroy/{id}', [MatchController::class, 'destroy'])->name('matches.destroy');
     });
 
 });

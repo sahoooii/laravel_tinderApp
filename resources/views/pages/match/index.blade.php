@@ -23,7 +23,8 @@
 					</div>
 				@endforeach
 			</div>
-
+      
+      {{-- Paginate --}}
 			<div class="d-flex justify-content-center mt-3">
 				{{ $matchedUsers->links() }}
 			</div>
