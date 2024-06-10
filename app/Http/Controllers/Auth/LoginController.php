@@ -42,9 +42,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        // 同時ログインを防ぐ
+        // $this->middleware('guest:admin')->except('logout');
     }
 
-     // logout functionを作成
+    // logout functionを作成
     public function logout(Request $request)
     {
         $this->performLogout($request);
