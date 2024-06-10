@@ -41,9 +41,11 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                        {{-- <a class="dropdown-item active" href="">
-                                            {{  $user->name}}
-                                        </a> --}}
+                                      @if (isset($user))
+                                        <a class="dropdown-item active" href="">
+                                            {{ $user->name}}
+                                        </a>
+                                      @endif
                                         <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
