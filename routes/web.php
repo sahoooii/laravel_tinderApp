@@ -22,7 +22,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'users'], function () {
-        Route::get('', [UserController::class, 'index'])->name('users.index');
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
         Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
         Route::put('update/{id}', [UserController::class, 'update'])->name('users.update');
         Route::post('destroy/{id}', [UserController::class, 'destroy'])->name('users.destroy');
@@ -35,5 +35,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('show/{id}', [MatchController::class, 'show'])->name('matches.show');
         Route::post('destroy/{id}', [MatchController::class, 'destroy'])->name('matches.destroy');
     });
-
 });
