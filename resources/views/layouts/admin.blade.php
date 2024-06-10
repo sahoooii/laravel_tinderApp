@@ -24,7 +24,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <div id="app">
@@ -35,22 +34,22 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                            @auth
+                            @auth('admin')
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         <i class="fa fa-cog" aria-hidden="true"></i>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item active" href="{{route('users.edit', ['id' =>  $user->id]) }}">
-                                            {{  $user->name }}
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                        {{-- <a class="dropdown-item active" href="">
+                                            {{  $user->name}}
+                                        </a> --}}
+                                        <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form method="POST" id="logout-form" action="{{ route('logout') }}" class="d-none">
+                                        <form method="POST" id="logout-form" action="{{ route('admin.logout') }}"  class="d-none">
                                             @csrf
                                         </form>
                                     </div>
@@ -60,7 +59,7 @@
 
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item">
-                                <a class="navbar-brand" href="{{ url('/users') }}">
+                                <a class="navbar-brand" href="{{ url('/admin') }}">
                                     <img src="https://worldvectorlogo.com/logos/tinder-1.svg" alt="Tinder Logo" title="Tinder Logo" style="width: 100px">
                                 </a>
                             </li>
@@ -72,21 +71,16 @@
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('User Login') }}</a>
                                     </li>
                                 @endif
 
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                            @else
+                            {{-- @else
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('matches.index') }}">
                                         <i class="fa fa-comments" aria-hidden="true"></i>
                                     </a>
-                                </li>
+                                </li> --}}
                             @endguest
                         </ul>
                     </div>
