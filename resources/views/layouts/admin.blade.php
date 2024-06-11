@@ -45,11 +45,12 @@
                                         <a class="dropdown-item active" href="">
                                             {{ $user->name}}
                                         </a>
-                                      @endif
+                                      {{-- @endif --}}
                                         <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
+                                      @endif
 
                                         <form method="POST" id="logout-form" action="{{ route('admin.logout') }}"  class="d-none">
                                             @csrf

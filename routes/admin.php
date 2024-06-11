@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,10 @@ use App\Http\Controllers\Admin\AdminController;
 */
 
 Route::group(['middleware' => 'auth:admin'], function () {
-		Route::get('/', [AdminController::class, 'index'])->name('index')->middleware('auth:admin');
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('show/{id}', [AdminController::class, 'show'])->name('show')->middleware('auth:admin');
+    Route::post('destroy/{id}', [AdminController::class, 'destroy'])->name('destroy');
+
 });
 
 
