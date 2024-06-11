@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -19,10 +21,14 @@ class AdminController extends Controller
      */
     public function index()
     {
+        // dd(Auth::guard('web')->user());
         $user = Admin::find(\Auth::user()->id);
         // dd($user);
+        $allUsers = User::select('id', 'name', 'img_url')
+        ->paginate(6);
+        // dd($allUsers);
 
-        return view('admin.index', compact('user'));
+        return view('admin.index', compact('user', 'allUsers'));
     }
 
     /**
@@ -54,7 +60,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -88,6 +94,12 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->delete();
+
+        return redirect()
+                ->route('admin.index')
+                ->with(['flash_message' => 'Delete from users list',
+                'status' => 'alert'
+        ]);
     }
 }
