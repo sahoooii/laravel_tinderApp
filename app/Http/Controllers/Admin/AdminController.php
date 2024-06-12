@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Swipe;
+use App\Services\MatchedUserInfoService;
 
 class AdminController extends Controller
 {
@@ -22,34 +23,13 @@ class AdminController extends Controller
     public function index()
     {
         // dd(Auth::guard('web')->user());
-        $user = Admin::find(\Auth::user()->id);
+        $admin = Admin::find(\Auth::user()->id);
         // dd($user);
         $allUsers = User::select('id', 'name', 'img_url')
         ->paginate(6);
         // dd($allUsers);
 
-        return view('admin.index', compact('user', 'allUsers'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('admin.index', compact('admin', 'allUsers'));
     }
 
     /**
@@ -60,7 +40,23 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        dd('show');
+        $admin = Admin::find(\Auth::user()->id);
+
+        $user = User::where('id', $id)->first();
+
+        //gender表記
+        $gender = MatchedUserInfoService::userGender($user->gender);
+        // //search_status表記
+        $search_status = MatchedUserInfoService::userSearchStatus($user->search_status);
+
+        $likedUserIds = Swipe::where('to_user_id', $user->id)
+        ->where('is_like', true)
+        ->pluck('from_user_id');
+
+				$countLikedUsers = count($likedUserIds);
+        // dd($countLikedUsers);
+
+        return view('admin.show', compact('admin', 'user', 'gender', 'search_status', 'countLikedUsers'));
     }
 
     /**

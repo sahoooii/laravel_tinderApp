@@ -41,9 +41,9 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                                      @if (isset($user))
+                                      @if (isset($admin))
                                         <a class="dropdown-item active" href="">
-                                            {{ $user->name}}
+                                            {{ $admin->name}}
                                         </a>
                                       {{-- @endif --}}
                                         <a class="dropdown-item" href="{{ route('admin.logout') }}"
