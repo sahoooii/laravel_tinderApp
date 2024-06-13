@@ -15,9 +15,11 @@ class MatchController extends Controller
         $user = User::find(\Auth::user()->id);
 
         //自分にlikeしてくれたuser ids
-        $likedUserIds = Swipe::where('to_user_id', $user->id)
-                        ->where('is_like', true)
-                        ->pluck('from_user_id');
+        // $likedUserIds = Swipe::where('to_user_id', $user->id)
+        //                 ->where('is_like', true)
+        //                 ->pluck('from_user_id');
+
+        $likedUserIds = MatchedUserIdService::likedUserIds($user);
 
         $matchedUsers = Swipe::where('from_user_id', $user->id)
                         ->whereIn('to_user_id', $likedUserIds)
