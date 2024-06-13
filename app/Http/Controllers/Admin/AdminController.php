@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Swipe;
 use App\Services\MatchedUserInfoService;
+use App\Services\MatchedUserIdService;
 
 class AdminController extends Controller
 {
@@ -24,10 +25,9 @@ class AdminController extends Controller
     {
         // dd(Auth::guard('web')->user());
         $admin = Admin::find(\Auth::user()->id);
-        // dd($user);
-        $allUsers = User::select('id', 'name', 'img_url')
+
+				$allUsers = User::select('id', 'name', 'img_url')
         ->paginate(6);
-        // dd($allUsers);
 
         return view('admin.index', compact('admin', 'allUsers'));
     }
@@ -42,44 +42,25 @@ class AdminController extends Controller
     {
         $admin = Admin::find(\Auth::user()->id);
 
-        $user = User::where('id', $id)->first();
+        //パラメータのidを取得,存在しないuser_idはredirect
+        if (is_null(User::find($id))) {
+            return redirect()
+            ->route('admin.index');
+        } else {
+            $user = User::where('id', $id)->first();
+        }
 
-        //gender表記
+        //gender, search_status表記
         $gender = MatchedUserInfoService::userGender($user->gender);
-        // //search_status表記
         $search_status = MatchedUserInfoService::userSearchStatus($user->search_status);
 
-        $likedUserIds = Swipe::where('to_user_id', $user->id)
-        ->where('is_like', true)
-        ->pluck('from_user_id');
+        $likedUserIds = MatchedUserIdService::likedUserIds($user);
+        $matchedUsers = MatchedUserIdService::matchedUsers($user);
 
-				$countLikedUsers = count($likedUserIds);
-        // dd($countLikedUsers);
+        $countLikedUsers = count($likedUserIds);
+        $countMatchedUsers = count($matchedUsers);
 
-        return view('admin.show', compact('admin', 'user', 'gender', 'search_status', 'countLikedUsers'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return view('admin.show', compact('admin', 'user', 'gender', 'search_status', 'countLikedUsers', 'countMatchedUsers'));
     }
 
     /**
