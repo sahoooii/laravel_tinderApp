@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\User;
+use App\Models\Swipe;
+use App\Services\MatchedUserInfoService;
+use App\Services\MatchedUserIdService;
 
 class AdminController extends Controller
 {
@@ -19,31 +23,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user = Admin::find(\Auth::user()->id);
-        // dd($user);
+        // dd(Auth::guard('web')->user());
+        $admin = Admin::find(\Auth::user()->id);
 
-        return view('admin.index', compact('user'));
-    }
+				$allUsers = User::select('id', 'name', 'img_url')
+        ->paginate(6);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('admin.index', compact('admin', 'allUsers'));
     }
 
     /**
@@ -54,30 +40,27 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $admin = Admin::find(\Auth::user()->id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        //パラメータのidを取得,存在しないuser_idはredirect
+        if (is_null(User::find($id))) {
+            return redirect()
+            ->route('admin.index');
+        } else {
+            $user = User::where('id', $id)->first();
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        //gender, search_status表記
+        $gender = MatchedUserInfoService::userGender($user->gender);
+        $search_status = MatchedUserInfoService::userSearchStatus($user->search_status);
+
+        $likedUserIds = MatchedUserIdService::likedUserIds($user);
+        $matchedUsers = MatchedUserIdService::matchedUsers($user);
+
+        $countLikedUsers = count($likedUserIds);
+        $countMatchedUsers = count($matchedUsers);
+
+        return view('admin.show', compact('admin', 'user', 'gender', 'search_status', 'countLikedUsers', 'countMatchedUsers'));
     }
 
     /**
@@ -88,6 +71,12 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->delete();
+
+        return redirect()
+                ->route('admin.index')
+                ->with(['flash_message' => 'Delete from users list',
+                'status' => 'alert'
+        ]);
     }
 }
