@@ -25,7 +25,10 @@
                     @if ($countLikedUsers > 0)
                     {{-- Liked count --}}
                       <h5 class="card-title"><i class="fa-solid fa-heart ml-2 text-danger"></i> {{ $countLikedUsers }}</h5>
-                      {{-- matching count --}}
+                    @endif
+                    @if ( $countMatchedUsers > 0)
+                    {{-- matching count --}}
+                      <h5 class="card-title"><i class="fa-solid fa-people-arrows ml-2 text-danger"></i> {{ $countMatchedUsers }}</h5>
                     @endif
                   </div>
                         <p class="card-text">
