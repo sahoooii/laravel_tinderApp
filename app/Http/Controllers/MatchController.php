@@ -49,9 +49,8 @@ class MatchController extends Controller
             ]);
         }
 
-        //gender表記
+        //gender, search_status表記
         $gender = MatchedUserInfoService::userGender($matchedUserInfo->gender);
-        // //search_status表記
         $search_status = MatchedUserInfoService::userSearchStatus($matchedUserInfo->search_status);
 
         return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));

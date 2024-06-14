@@ -14,7 +14,7 @@
 				@endif
 
 				@foreach ($matchedUsers as $matchedUser)
-					<div class="d-flex justify-content-between align-items-center mb-3 pr-2 pl-2">
+					<div class="d-flex justify-content-between align-items-center mb-3 pr-4 pl-4">
               <img src="{{ $matchedUser->toUser->img_url }}" alt="img" class="rounded-circle img_icon">
               <a href="{{route('matches.show', ['id' =>  $matchedUser->toUser->id]) }}" class="streched-link text-secondary link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover h5">
                 {{ $matchedUser->toUser->name }}
