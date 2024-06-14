@@ -11,13 +11,7 @@ class MatchController extends Controller
 {
     public function index()
     {
-        //loginしているuser情報
         $user = User::find(\Auth::user()->id);
-
-        //自分にlikeしてくれたuser ids
-        // $likedUserIds = Swipe::where('to_user_id', $user->id)
-        //                 ->where('is_like', true)
-        //                 ->pluck('from_user_id');
 
         $likedUserIds = MatchedUserIdService::likedUserIds($user);
 
@@ -55,9 +49,8 @@ class MatchController extends Controller
             ]);
         }
 
-        //gender表記
+        //gender, search_status表記
         $gender = MatchedUserInfoService::userGender($matchedUserInfo->gender);
-        // //search_status表記
         $search_status = MatchedUserInfoService::userSearchStatus($matchedUserInfo->search_status);
 
         return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));

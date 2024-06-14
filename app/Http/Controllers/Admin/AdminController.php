@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\User;
-use App\Models\Swipe;
 use App\Services\MatchedUserInfoService;
 use App\Services\MatchedUserIdService;
 
@@ -23,10 +21,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        // dd(Auth::guard('web')->user());
         $admin = Admin::find(\Auth::user()->id);
 
-				$allUsers = User::select('id', 'name', 'img_url')
+        $allUsers = User::select('id', 'name', 'img_url')
         ->paginate(6);
 
         return view('admin.index', compact('admin', 'allUsers'));
@@ -45,7 +42,10 @@ class AdminController extends Controller
         //パラメータのidを取得,存在しないuser_idはredirect
         if (is_null(User::find($id))) {
             return redirect()
-            ->route('admin.index');
+            ->route('admin.index')
+            ->with(['flash_message' => 'This user is no longer exist',
+            'status' => 'alert'
+            ]);
         } else {
             $user = User::where('id', $id)->first();
         }
