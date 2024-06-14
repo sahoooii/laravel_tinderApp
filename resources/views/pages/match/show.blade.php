@@ -28,7 +28,9 @@
                         <button type="button" class="btn btn-outline-secondary text-black" disabled><i class="fas fa-ruler pr-1"></i>{{ $matchedUserInfo->height }}<span>cm</span></button>
                         <div class="d-flex justify-content-start">
                             <button type="button" class="btn btn-outline-secondary text-black mt-2 mr-2 d-block" disabled><i class="fa-solid fa-magnifying-glass pr-1"></i>{{ $search_status }}</button>
-                            <button type="button" class="btn btn-outline-secondary text-black mt-2 d-block" disabled><i class="fas fa-briefcase pr-1"></i>{{ $matchedUserInfo->occupation }}</button>
+                            @if ($matchedUserInfo->occupation !== null)
+                                <button type="button" class="btn btn-outline-secondary text-black mt-2 d-block" disabled><i class="fas fa-briefcase pr-1"></i>{{ $matchedUserInfo->occupation }}</button>
+                            @endif
                         </div>
                 </div>
             </div>

@@ -16,7 +16,7 @@
 				@endif
 
         @foreach ($allUsers as $user)
-					<div class="d-flex justify-content-between align-items-center mb-3">
+					<div class="d-flex justify-content-between align-items-center mb-3 pr-4 pl-4">
 						<img src="{{ $user->img_url }}" alt="img" class="rounded-circle img_icon">
 						<a href="{{route('admin.show', ['id' =>  $user->id]) }}" class="streched-link text-secondary link-body-emphasis link-underline-opacity-25 link-underline-opacity-75-hover h5">
 							{{ $user->name }}
