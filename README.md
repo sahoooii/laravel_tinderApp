@@ -126,7 +126,7 @@ admin
 - id
 - name varchar
 - email varchar
-- email_verified_at	timestamp
+- email_verified_at timestamp
 - password varchar
 - remember_token varchar
 - created_at timestamp
