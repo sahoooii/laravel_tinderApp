@@ -1,7 +1,7 @@
 
 # laravel-tinderApp
 
-<img src="https://img.shields.io/badge/-HTML5-E34F26.svg?logo=html5&style=flat&logoColor=fff"> <img src="https://img.shields.io/badge/-CSS3-1572B6.svg?logo=css3&style=flat"> <img src="https://img.shields.io/badge/-laravel-FF2D20.svg?logo=laravel&style=flat&logoColor=black"> <img src="https://img.shields.io/badge/-MySQL-4479A1.svg?logo=mysql&style=flat&logoColor=orange">
+<img src="https://img.shields.io/badge/-HTML5-E34F26.svg?logo=html5&style=flat&logoColor=fff"> <img src="https://img.shields.io/badge/-CSS3-1572B6.svg?logo=css3&style=flat"> <img src="https://img.shields.io/badge/-laravel8-FF2D20.svg?logo=laravel&style=flat&logoColor=black"> <img src="https://img.shields.io/badge/-MySQL-4479A1.svg?logo=mysql&style=flat&logoColor=orange">
 <img src="https://img.shields.io/badge/-Bootstrap-7952B3.svg?logo=bootstrap&style=flat&logoColor=fff"> <img src="https://img.shields.io/badge/-JavaScript-black.svg?logo=javascript&style=flat">
 
 
@@ -61,6 +61,21 @@ TinderのようなDating Appを作成しました。Laravel, MySQL, Bootstrapを
 ```
 php artisan migrate:fresh --seed
 ```
+
+ - FYI, I created 18 users dummy data. You can also log in using this data and enjoy this app.
+
+	- All user data which I created email are the first name add @gmail.com<br /> And Password is just type password
+
+ ```
+You can check more details at UsersTableSeeder.php
+
+Ex: name: Stacy
+		email: stacy@gmail.com
+		password: password
+
+ ```
+
+
 - And finally, create APP_KEY
 
 ```
@@ -100,7 +115,7 @@ users
 - id int
 - name varchar
 - email varchar
-- email_verified_at	timestamp
+- email_verified_at timestamp
 - password varchar
 - remember_token varchar
 - img_url varchar
