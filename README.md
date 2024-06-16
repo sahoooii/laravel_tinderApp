@@ -37,7 +37,7 @@ TinderのようなDating Appを作成しました。Laravel, MySQL, Bootstrapを
 - Seeding dummy data
 - Pagination
 - Responsive design
-- Admin Page
+- Admin Page (/admin/login)
 	- Admin User login Page
   - Show users list
   - Delete users's account
@@ -89,7 +89,7 @@ php artisan serve
 
 ### Env Variables
 
-Rename the `example.env` file to `.env` and add the following
+Rename the `.env.example` file to `.env` and add the following
 
 ```
 DB_CONNECTION=mysql
