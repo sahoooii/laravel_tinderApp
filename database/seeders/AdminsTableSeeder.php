@@ -19,7 +19,7 @@ class AdminsTableSeeder extends Seeder
 					[
 						'name' => env('ADMIN_USER_NAME'),
 						'email' => env('ADMIN_EMAIL'),
-						'password' => Hash::make(env('ADMIN_PASSWORD'))
+						'password' => Hash::make('admin123')
 					]
         ]);
     }
