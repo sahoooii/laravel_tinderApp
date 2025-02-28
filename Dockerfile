@@ -15,6 +15,12 @@ WORKDIR /var/www/html
 # Laravelのファイルをコピー
 COPY . .
 
+# 依存関係のインストール
+RUN composer install --no-dev --optimize-autoloader
+
+# LaravelのAPP_KEYを生成
+RUN php artisan key:generate
+
 # 権限の設定
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
@@ -22,10 +28,8 @@ RUN chown -R www-data:www-data /var/www/html \
 # Apacheの設定
 RUN a2enmod rewrite
 
-# Laravelの環境変数（ENVファイル）はRenderの管理画面で設定
+# ポート設定
+EXPOSE 80
 
-# ポート設定（Renderのデフォルトポート）
-EXPOSE 10000
-
-# 起動スクリプト
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=10000"]
+# 起動スクリプト（Apacheを使用）
+CMD ["apache2-foreground"]
