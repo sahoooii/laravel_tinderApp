@@ -15,6 +15,9 @@ WORKDIR /var/www/html
 # Laravelのファイルをコピー
 COPY . .
 
+# .envファイルをコピー
+ ./
+
 # 依存関係のインストール
 RUN composer install --no-dev --optimize-autoloader
 
@@ -29,7 +32,7 @@ RUN chown -R www-data:www-data /var/www/html \
 RUN a2enmod rewrite
 
 # ポート設定
-EXPOSE 80
+EXPOSE 10000
 
 # 起動スクリプト（Apacheを使用）
 CMD ["apache2-foreground"]
