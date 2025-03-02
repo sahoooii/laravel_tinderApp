@@ -16,10 +16,6 @@ use App\Http\Controllers\MatchController;
 |
 */
 
-Route::get('/phpinfo', function () {
-    phpinfo();
-});
-
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
