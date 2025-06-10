@@ -2,15 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-// use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,16 +22,10 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
-    Route::get('show/{id}', [AdminController::class, 'show'])->name('show')->middleware('auth:admin');
+    Route::get('show/{id}', [AdminController::class, 'show'])->name('show');
     Route::post('destroy/{id}', [AdminController::class, 'destroy'])->name('destroy');
-
 });
 
-
-Route::get('register', [RegisteredUserController::class, 'create'])
-->name('register');
-
-Route::post('register', [RegisteredUserController::class, 'store']);
 
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
 ->name('login');
@@ -64,14 +55,6 @@ Route::get('verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'
 Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
 ->middleware(['auth:admin', 'throttle:6,1'])
 ->name('verification.send');
-
-// Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-// ->middleware('auth:admin')
-// ->name('password.confirm');
-
-// Route::post('confirm-password', [ConfirmablePasswordController::class, 'store'])
-// ->middleware('auth:admin');
-
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 ->middleware('auth:admin')
 ->name('logout');

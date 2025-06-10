@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Services\MatchedUserInfoService;
 use App\Services\MatchedUserIdService;
+use \Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -37,30 +38,36 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $admin = Admin::find(\Auth::user()->id);
+        $admin = Auth::guard('admin')->user();
 
         //パラメータのidを取得,存在しないuser_idはredirect
-        if (is_null(User::find($id))) {
+        $user = User::find($id);
+
+        if (is_null($user)) {
             return redirect()
             ->route('admin.index')
             ->with(['flash_message' => 'This user is no longer exist',
             'status' => 'alert'
             ]);
-        } else {
-            $user = User::where('id', $id)->first();
         }
 
         //gender, search_status表記
-        $gender = MatchedUserInfoService::userGender($user->gender);
-        $search_status = MatchedUserInfoService::userSearchStatus($user->search_status);
+        $gender = MatchedUserInfoService::userGender($user->gender ?? 'unknown');
+        $search_status = MatchedUserInfoService::userSearchStatus($user->search_status ?? 'unknown');
 
-        $likedUserIds = MatchedUserIdService::likedUserIds($user);
+				//Get ID who give me likes
+        $getUserIdsWhoLikedMeIds = MatchedUserIdService::getUserIdsWhoLikedMe($user);
+				// Actual Match
         $matchedUsers = MatchedUserIdService::matchedUsers($user);
 
-        $countLikedUsers = count($likedUserIds);
-        $countMatchedUsers = count($matchedUsers);
-
-        return view('admin.show', compact('admin', 'user', 'gender', 'search_status', 'countLikedUsers', 'countMatchedUsers'));
+        return view('admin.show', [
+            'admin' => $admin,
+            'user' => $user,
+            'gender' => $gender,
+            'search_status' => $search_status,
+            'countLikedUsers' => count($getUserIdsWhoLikedMeIds),
+            'countMatchedUsers' => count($matchedUsers),
+            ]);
     }
 
     /**

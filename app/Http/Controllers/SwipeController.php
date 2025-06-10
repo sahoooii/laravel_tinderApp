@@ -2,35 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Swipe;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SwipeRequest;
+use App\Services\SwipeService;
 
 class SwipeController extends Controller
 {
-    public function store(Request $request)
+    public function store(SwipeRequest $request)
     {
-        // dd($request->all());
-        //保存
-        Swipe::create([
-            'from_user_id' => \Auth::user()->id,
-            'to_user_id' => $request->input('to_user_id'),
-            'is_like' => $request->input('is_like'),
-        ]);
+        $userId = \Auth::id();
 
-        //自分がlikeした人からlikeが来てたらmach
-        $isMatch = $request->input('is_like') &&
-                    Swipe::where('from_user_id', $request->input('to_user_id'))
-                    ->where('to_user_id', \Auth::user()->id)
-                    ->where('is_like', true)
-                    ->exists();
+        //自分がlikeした人からlikeが来てたらmatch
+        $isMatch = SwipeService::storeSwipe($userId, $request->input('to_user_id'), $request->input('is_like'));
+
+        $redirect = redirect(route('users.index'));
 
         if ($isMatch) {
-            return redirect(route('users.index'))
-            ->with(['flash_message' => "You're matched!!",
-                    'status' => 'info'
-            ]);
+            $redirect->with([
+                      'flash_message' => "You're 	matched!!",
+                        'status' => 'info'
+                    ]);
         }
 
-        return redirect(route('users.index'));
+        return $redirect;
     }
 }
