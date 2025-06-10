@@ -6,54 +6,42 @@ use App\Models\User;
 use App\Models\Swipe;
 use App\Services\MatchedUserIdService;
 use App\Services\MatchedUserInfoService;
+use Illuminate\Support\Facades\Auth;
 
 class MatchController extends Controller
 {
     public function index()
     {
-        $user = User::find(\Auth::user()->id);
+        $user = Auth::user();
 
-        $likedUserIds = MatchedUserIdService::likedUserIds($user);
-
-        $matchedUsers = Swipe::where('from_user_id', $user->id)
-                        ->whereIn('to_user_id', $likedUserIds)
-                        ->where('is_like', true)
-                        ->with('toUser')
-                        ->paginate(5);
+        $matchedUsers = MatchedUserIdService::getMatchedUsers($user);
 
         return view('pages.match.index', compact('user', 'matchedUsers'));
     }
 
     public function show($id)
     {
-        $user = User::find(\Auth::user()->id);
+        $authUser = Auth::user();
+        $userToShow = User::find($id);
 
-        //パラメータのidを取得,存在しないuser_idはredirect
-        if (is_null(User::find($id))) {
+				//パラメータのidを取得,存在しないuser_idはredirect
+        if (is_null($userToShow)) {
             return redirect()
             ->route('matches.index');
-        } else {
-            $user_id = User::find($id)->id;
         }
-
-        $matchedUserId = MatchedUserIdService::matchedUserId($user_id);
-
-        //$matchedUserIdがtrueならuser情報を取得,falseならredirect
-        if ($matchedUserId) {
-            $matchedUserInfo =  User::find($id);
-        } else {
-            return redirect()
-            ->route('matches.index')
-            ->with(['flash_message' => 'You can only see your matched user.',
-                'status' => 'alert'
+        // $id=targetUserId
+        if (!MatchedUserIdService::isMatchedUser($authUser, $id)) {
+            return redirect()->route('matches.index')->with([
+                    'flash_message' => 'You can only see your matched user.',
+                    'status' => 'alert'
             ]);
         }
 
         //gender, search_status表記
-        $gender = MatchedUserInfoService::userGender($matchedUserInfo->gender);
-        $search_status = MatchedUserInfoService::userSearchStatus($matchedUserInfo->search_status);
+        $gender = MatchedUserInfoService::userGender($userToShow->gender);
+        $search_status = MatchedUserInfoService::userSearchStatus($userToShow->search_status);
 
-        return view('pages.match.show', compact('user', 'matchedUserInfo', 'gender', 'search_status'));
+        return view('pages.match.show', compact('authUser', 'userToShow', 'gender', 'search_status'));
     }
 
     public function destroy($id)

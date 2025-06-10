@@ -4,41 +4,43 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\Swipe;
+use Illuminate\Support\Facades\Auth;
 
 class SearchGenderService
 {
-    public static function searchGender($search_gender, $user_gender)
+    public static function searchGender($searchGender, $userGender)
     {
         //Loginしているuser情報
-        $user = User::find(\Auth::user()->id);
-				// LoginしているuserがswipeしたuserIdのみを配列で取得
-        $swipedUserIds = Swipe::where('from_user_id', $user->id)->get()->pluck('to_user_id');
+        $authUser = Auth::user();
 
-        //swipeしていないuserを1つ取得,search_genderで切り分け
-        //look for both(2) $user_gender=man
-				// man=0 woman=1 both=2
-        if ($search_gender === 2 && $user_gender === 0) {
-            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->whereIn('gender', [0,1])->whereIn('search_gender', [0, 2])->first();
-        }
-        //look for both(2) $user_gender=woman
-        if ($search_gender === 2 && $user_gender === 1) {
-            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->whereIn('gender', [0,1])->whereIn('search_gender', [1, 2])->first();
-        }
+        // $authUserがswipeしたuserIdのみを配列で取得
+        $swipedUserIds = Swipe::where('from_user_id', $authUser->id)
+        ->pluck('to_user_id');
 
-        //look for man(0) man to man, woman to man
-        if ($search_gender === 0 && $user_gender === 0) {
-            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [0,2])->first();
-        } elseif ($search_gender === 0 && $user_gender === 1) {
-            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 0)->whereIn('search_gender', [1,2])->first();
-        }
+        // 相手の性別
+        $genderFilter = [];
+        // 相手が自分を対象としてるかどうか
+        $searchGenderFilter = [];
 
-        //look for woman(1) woman to woman, man to woman
-        if ($search_gender === 1 && $user_gender === 1) {
-            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 1)->whereIn('search_gender', [1,2])->first();
-        } elseif ($search_gender === 1 && $user_gender === 0) {
-            $notSwipeUser = User::where('id', '<>', $user->id)->whereNotIn('id', $swipedUserIds)->where('gender', '=', 1)->whereIn('search_gender', [0,2])->first();
+        // 性別の絞り込み条件
+        // man=0 woman=1 both=2
+        if ($searchGender === 2) {
+            $genderFilter = [0, 1];
+            $searchGenderFilter = $userGender === 0 ? [0, 2] : [1, 2];
+        } elseif ($searchGender === 0) {
+            $genderFilter = [0];
+            $searchGenderFilter = $userGender === 0 ? [0, 2] : [1, 2];
+        } elseif ($searchGender === 1) {
+            $genderFilter = [1];
+            $searchGenderFilter = $userGender === 1 ? [1, 2] : [0, 2];
         }
 
-		return $notSwipeUser;
+        // 自分自身は検索結果から除外、既にスワイプしたユーザーを表示しない、自分が求めている相手の性別、相手が自分の性別を受け入れてるか
+        return User::where('id', '<>', $authUser->id)
+           ->whereNotIn('id', $swipedUserIds)
+           ->whereIn('gender', $genderFilter)
+           ->whereIn('search_gender', $searchGenderFilter)
+          //  ->inRandomOrder()
+           ->first();
     }
 }

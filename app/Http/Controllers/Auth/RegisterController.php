@@ -90,26 +90,24 @@ class RegisterController extends Controller
     protected function create(Request $request)
     {
         //img upload
-        $imageFile = $request->file('image');//file取得
-
-        if (!is_null($imageFile) && $imageFile->isValid()) {
-            $fullFilePath = ImageService::upload($imageFile, 'images');
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $fullFilePath = ImageService::upload($request->file('image'), 'images');
         }
 
         $data = $request->all();
 
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'img_url' =>  $fullFilePath,
-            'age' => $data['age'],
-            'height' => $data['height'],
-            'gender' => $data['gender'],
-            'search_gender' => $data['search_gender'],
-            'search_status' => $data['search_status'],
-            'occupation' => $data['occupation'],
-            'message' => $data['message'],
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => Hash::make($data['password']),
+        'img_url' =>  $fullFilePath,
+        'age' => $data['age'],
+        'height' => $data['height'],
+        'gender' => $data['gender'],
+        'search_gender' => $data['search_gender'],
+        'search_status' => $data['search_status'],
+        'occupation' => $data['occupation'],
+        'message' => $data['message'],
         ]);
     }
 }

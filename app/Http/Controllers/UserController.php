@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\Hash;
 use App\Services\ImageService;
 use App\Services\SearchGenderService;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
-        //loginしているuser情報
-        $user = User::find(\Auth::user()->id);
+        //Loginしているuser情報
+        $user = Auth::user();
 
         $notSwipeUser = SearchGenderService::searchGender($user['search_gender'], $user['gender']);
 
@@ -23,33 +24,30 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::find(\Auth::user()->id);
+        $user = Auth::user();
 
         return view('pages.user.edit', compact('user'));
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request)
     {
-        //imgをuploadしなくてもerrorにならないように
-        $imageFile = $request->file('image');//file取得
-        if (!is_null($imageFile) && $imageFile->isValid()) {
-            $fullFilePath = ImageService::upload($imageFile, 'images');
+        $user = Auth::user();
+
+        // 画像アップロード
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $user->img_url = ImageService::upload($request->file('image'), 'images');
         }
 
-        $user = User::find(\Auth::user()->id);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make($request->password);
-        if (!is_null($imageFile) && $imageFile->isValid()) {
-            $user->img_url = $fullFilePath;
+        // パスワードが入力されていた場合のみ更新
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->input('password'));
         }
-        $user->age = $request->input('age');
-        $user->height = $request->input('height');
-        $user->gender = $request->input('gender');
-        $user->search_gender = $request->input('search_gender');
-        $user->search_status = $request->input('search_status');
-        $user->occupation = $request->input('occupation');
-        $user->message = $request->input('message');
+
+        // 一括代入
+        $user->fill($request->only([
+            'name', 'email', 'age', 'height', 'gender',
+            'search_gender', 'search_status', 'occupation', 'message'
+                    ]));
 
         $user->save();
 
@@ -62,7 +60,9 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        User::find(\Auth::user()->id)->delete();
+        $user = Auth::user();
+
+        User::find($user->id)->delete();
 
         return redirect()
         ->route('login')
