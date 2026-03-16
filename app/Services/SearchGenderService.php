@@ -40,7 +40,7 @@ class SearchGenderService
            ->whereNotIn('id', $swipedUserIds)
            ->whereIn('gender', $genderFilter)
            ->whereIn('search_gender', $searchGenderFilter)
-          //  ->inRandomOrder()
+           ->inRandomOrder()
            ->first();
     }
 }
